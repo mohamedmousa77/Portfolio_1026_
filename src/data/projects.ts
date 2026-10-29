@@ -1,3 +1,11 @@
+import attendanceImg from '../../assets/Attendance.png';
+import lostAndFoundImg from '../../assets/L&F.png';
+import posImg from '../../assets/pos1.png';
+import connect4Img from '../../assets/connect-four-game.png';
+import personalFinImgance from '../../assets/Personal-finance.png';
+import rbs from '../../assets/rock-paper-scissors.png';
+
+
 export type ProjectCategory = 'Web' | 'Mobile';
 
 export interface Project {
@@ -8,6 +16,7 @@ export interface Project {
   category: ProjectCategory;
   github: string;
   demo?: string;
+  image?: string;
 }
 
 export const projects: Project[] = [
@@ -18,8 +27,9 @@ export const projects: Project[] = [
       'A full-stack personal finance manager for tracking income, expenses and budgets with interactive dashboards and recurring-transaction support.',
     technologies: ['Angular', 'ASP.NET', 'SSMS'],
     category: 'Web',
-    github: 'https://github.com/mohamedmousa',
-    demo: 'https://example.com/personal-finance',
+    github: 'https://github.com/mohamedmousa77/FinancialApp',
+    // demo: 'https://example.com/personal-finance',
+    image: personalFinImgance,
   },
   {
     id: 2,
@@ -29,7 +39,7 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa',
-    demo: 'https://example.com/wafra',
+    // demo: 'https://example.com/wafra',
   },
   {
     id: 3,
@@ -47,7 +57,8 @@ export const projects: Project[] = [
       'A classic hand game with score tracking, smooth animations and a clean responsive layout playable on any device.',
     technologies: ['HTML', 'JavaScript', 'TypeScript', 'CSS'],
     category: 'Web',
-    github: 'https://github.com/mohamedmousa',
+    github: 'https://github.com/mohamedmousa77/Rock--Paper--Scissors-game',
+    image: rbs,
   },
   {
     id: 5,
@@ -56,7 +67,8 @@ export const projects: Project[] = [
       'A two-player strategy game with drop animations, win detection and a minimalist board UI built in Angular.',
     technologies: ['Angular', 'TypeScript', 'CSS'],
     category: 'Web',
-    github: 'https://github.com/mohamedmousa',
+    github: 'https://github.com/mohamedmousa77/Connect-Four-Game',
+    image: connect4Img,
   },
   {
     id: 6,
@@ -65,8 +77,9 @@ export const projects: Project[] = [
       'A mobile attendance system for tracking employee check-in/out, generating reports and managing leave requests via REST API.',
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
-    github: 'https://github.com/mohamedmousa',
-    demo: 'https://example.com/attendance',
+    github: 'https://github.com/mohamedmousa77/Attendance-App',
+    // demo: 'https://example.com/attendance',
+    image: attendanceImg,
   },
   {
     id: 7,
@@ -85,7 +98,7 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa',
-    demo: 'https://example.com/whatsapp-clone',
+    // demo: 'https://example.com/whatsapp-clone',
   },
   {
     id: 9,
@@ -113,7 +126,8 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa',
-    demo: 'https://example.com/lost-found',
+    // demo: 'https://example.com/lost-found',
+    image: lostAndFoundImg,
   },
   {
     id: 12,
@@ -132,6 +146,7 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa',
-    demo: 'https://example.com/pos',
+    // demo: 'https://example.com/pos',
+    image: posImg,
   },
 ];

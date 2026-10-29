@@ -11,7 +11,7 @@ const pillars = [
   {
     title: 'Enterprise-Grade Architecture',
     description:
-      'I design backend systems with Clean Architecture, separation of concerns and testable boundaries — so they stay maintainable as teams and requirements grow.',
+      'I design backend systems with Clean Architecture, separation of concerns and testable boundaries - so they stay maintainable as teams and requirements grow.',
   },
   {
     title: 'Full-Stack Delivery',
@@ -21,7 +21,7 @@ const pillars = [
   {
     title: 'Cloud & Scalability',
     description:
-      'I deploy to Azure with CI/CD, containerize services with Docker, and design with horizontal scale in mind — performance and reliability are not afterthoughts.',
+      'I deploy to Azure with CI/CD, containerize services with Docker, and design with horizontal scale in mind - performance and reliability are not afterthoughts.',
   },
 ];
 

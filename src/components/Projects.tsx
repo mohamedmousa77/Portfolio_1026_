@@ -66,19 +66,33 @@ export default function Projects() {
               style={{ transitionDelay: `${(i % 3) * 80}ms` }}
             >
               {/* Visual header */}
-              <div className="relative h-40 bg-gradient-to-br from-ink-700 to-ink-850 overflow-hidden">
-                <div className="absolute inset-0 bg-grid opacity-50" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-mono text-5xl font-bold text-white/10 group-hover:text-cyan/20 transition-colors duration-500">
-                    {String(project.id).padStart(2, '0')}
-                  </span>
-                </div>
+              <div className="relative h-44 bg-gradient-to-br from-ink-700 to-ink-850 overflow-hidden">
+                {project.image ? (
+                  <>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
+                  </>
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-grid opacity-50" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="font-mono text-5xl font-bold text-white/10 group-hover:text-cyan/20 transition-colors duration-500">
+                        {String(project.id).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <FolderGit2 className="absolute bottom-4 right-4 h-8 w-8 text-white/20 group-hover:text-cyan-glow/60 transition-colors" />
+                  </>
+                )}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-ink-950/70 backdrop-blur border border-white/10 text-cyan-glow">
                     {project.category}
                   </span>
                 </div>
-                <FolderGit2 className="absolute bottom-4 right-4 h-8 w-8 text-white/20 group-hover:text-cyan-glow/60 transition-colors" />
               </div>
 
               {/* Body */}
