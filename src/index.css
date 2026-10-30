@@ -5,6 +5,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-primary: #0B0F1A;
+    --text-heading: #F8FAFC;
+    --text-body: #CBD5E1;
+    --text-muted: #94A3B8;
+    --accent-cyan: #38BDF8;
+    --accent-indigo: #6366F1;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+  }
+
   * {
     scroll-behavior: smooth;
   }
@@ -14,7 +24,7 @@
   }
 
   body {
-    @apply bg-ink-950 text-slate-200 font-sans antialiased;
+    @apply bg-ink-950 text-slate-300 font-sans antialiased text-base;
     overflow-x: hidden;
   }
 
@@ -41,32 +51,71 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-cyan-glow via-electric-glow to-cyan-glow bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#38BDF8] via-[#6366F1] to-[#38BDF8] bg-clip-text text-transparent;
     background-size: 200% auto;
   }
 
+  .metric-gradient {
+    color: #38BDF8;
+    background-image: linear-gradient(90deg, #38BDF8 0%, #6366F1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .glass-card {
-    @apply bg-ink-850/60 backdrop-blur-xl border border-white/5 rounded-2xl;
+    @apply bg-ink-850/60 backdrop-blur-xl rounded-2xl;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .glow-border {
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.15), 0 0 30px -10px rgba(34, 211, 238, 0.3);
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.2), 0 0 28px -10px rgba(56, 189, 248, 0.35);
   }
 
   .section-padding {
-    @apply px-6 py-24 md:px-12 lg:px-20 max-w-7xl mx-auto;
+    @apply px-6 py-24 md:py-[108px] md:px-12 lg:px-20 max-w-7xl mx-auto;
   }
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transform: translateY(16px);
+  transition: opacity 0.28s ease-out, transform 0.28s ease-out;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.reveal-strip {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.reveal.is-visible .reveal-strip,
+.reveal-strip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-strip {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 .bg-grid {
