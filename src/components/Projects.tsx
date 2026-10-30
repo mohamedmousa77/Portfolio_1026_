@@ -58,12 +58,14 @@ export default function Projects() {
         </div>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"> */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {visible.map((project, i) => (
             <article
               key={project.id}
               className="group glass-card overflow-hidden flex flex-col hover:glow-border hover:-translate-y-1 transition-all duration-300 reveal"
-              style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+              // style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+              style={{ transitionDelay: `${(i % 4) * 80}ms` }}
             >
               {/* Visual header */}
               <div className="relative h-44 bg-gradient-to-br from-ink-700 to-ink-850 overflow-hidden">

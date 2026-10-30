@@ -4,7 +4,8 @@ import posImg from '../../assets/pos1.png';
 import connect4Img from '../../assets/connect-four-game.png';
 import personalFinImgance from '../../assets/Personal-finance.png';
 import rbs from '../../assets/rock-paper-scissors.png';
-import productPage from '../../assets/product-page.png'
+import productPage from '../../assets/product-page.png';
+import multiApp from '../../assets/multi-aoo.png';
 
 export type ProjectCategory = 'Web' | 'Mobile';
 
@@ -58,7 +59,8 @@ export const projects: Project[] = [
       'An accessible, animated multi-step wizard with client-side validation, progress tracking and a polished custom UI.',
     technologies: ['Angular', 'CSS', 'TypeScript'],
     category: 'Web',
-    github: 'https://github.com/mohamedmousa77',
+    github: 'https://github.com/mohamedmousa77/multi-step-form',
+    image: multiApp,
   },
   {
     id: 5,

@@ -1,9 +1,9 @@
 import { Github, Linkedin, Mail, ArrowUp, Code2 } from 'lucide-react';
 
 const socials = [
-  { icon: Github, href: 'https://github.com/mohamedmousa', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/mohamedmousa', label: 'LinkedIn' },
-  { icon: Mail, href: 'mailto:hello@mohamedmousa.dev', label: 'Email' },
+  { icon: Github, href: 'https://github.com/mohamedmousa77', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/mohamedmousa-', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:mohamed.mousa.contact@gmail.com', label: 'Email' },
 ];
 
 const navLinks = [
@@ -82,7 +82,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} Mohamed Mousa. Built with React, Tailwind & care.
+            © {new Date().getFullYear()} Mohamed Mousa.
           </p>
           <button
             onClick={scrollTop}

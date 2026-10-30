@@ -80,7 +80,7 @@ export default function Contact() {
 
           <div className="mt-8 space-y-3">
             <a
-              href="https://github.com/mohamedmousa"
+              href="https://github.com/mohamedmousa77"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 rounded-xl glass-card hover:glow-border hover:-translate-y-0.5 transition-all duration-300 group"
@@ -91,13 +91,13 @@ export default function Contact() {
               <div>
                 <div className="text-sm text-slate-400">GitHub</div>
                 <div className="font-semibold text-white group-hover:text-cyan-glow transition-colors">
-                  @mohamedmousa
+                  @mohamedmousa77
                 </div>
               </div>
             </a>
 
             <a
-              href="https://linkedin.com/in/mohamedmousa"
+              href="https://www.linkedin.com/in/mohamedmousa-"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 rounded-xl glass-card hover:glow-border hover:-translate-y-0.5 transition-all duration-300 group"
@@ -114,7 +114,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="mailto:hello@mohamedmousa.dev"
+              href="mailto:mohamed.mousa.contact@gmail.com"
               className="flex items-center gap-4 p-4 rounded-xl glass-card hover:glow-border hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-cyan/20 to-electric/20 border border-cyan/20 flex items-center justify-center">
@@ -123,7 +123,7 @@ export default function Contact() {
               <div>
                 <div className="text-sm text-slate-400">Email</div>
                 <div className="font-semibold text-white group-hover:text-cyan-glow transition-colors">
-                  hello@mohamedmousa.dev
+                  mohamed.mousa.contact@gmail.com
                 </div>
               </div>
             </a>
@@ -148,11 +148,10 @@ export default function Contact() {
                 value={form.name}
                 onChange={handleChange('name')}
                 placeholder="Your name"
-                className={`${inputBase} ${
-                  errors.name
-                    ? 'border-red-500/50 focus:ring-red-500/30'
-                    : 'border-white/10 focus:border-cyan/40 focus:ring-cyan/20'
-                }`}
+                className={`${inputBase} ${errors.name
+                  ? 'border-red-500/50 focus:ring-red-500/30'
+                  : 'border-white/10 focus:border-cyan/40 focus:ring-cyan/20'
+                  }`}
               />
               {errors.name && (
                 <p className="mt-1.5 flex items-center gap-1.5 text-sm text-red-400">
@@ -173,11 +172,10 @@ export default function Contact() {
                 value={form.email}
                 onChange={handleChange('email')}
                 placeholder="you@example.com"
-                className={`${inputBase} ${
-                  errors.email
-                    ? 'border-red-500/50 focus:ring-red-500/30'
-                    : 'border-white/10 focus:border-cyan/40 focus:ring-cyan/20'
-                }`}
+                className={`${inputBase} ${errors.email
+                  ? 'border-red-500/50 focus:ring-red-500/30'
+                  : 'border-white/10 focus:border-cyan/40 focus:ring-cyan/20'
+                  }`}
               />
               {errors.email && (
                 <p className="mt-1.5 flex items-center gap-1.5 text-sm text-red-400">
@@ -198,11 +196,10 @@ export default function Contact() {
                 value={form.message}
                 onChange={handleChange('message')}
                 placeholder="Tell me about your project..."
-                className={`${inputBase} resize-none ${
-                  errors.message
-                    ? 'border-red-500/50 focus:ring-red-500/30'
-                    : 'border-white/10 focus:border-cyan/40 focus:ring-cyan/20'
-                }`}
+                className={`${inputBase} resize-none ${errors.message
+                  ? 'border-red-500/50 focus:ring-red-500/30'
+                  : 'border-white/10 focus:border-cyan/40 focus:ring-cyan/20'
+                  }`}
               />
               {errors.message && (
                 <p className="mt-1.5 flex items-center gap-1.5 text-sm text-red-400">
