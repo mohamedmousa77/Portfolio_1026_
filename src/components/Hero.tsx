@@ -1,5 +1,6 @@
 import { ArrowDown, Download, FolderGit2, Mail, Sparkles } from 'lucide-react';
 import personalImg from '../../assets/Personal.jpg';
+import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
 
 export default function Hero() {
   const scrollTo = (href: string) =>
@@ -85,7 +86,7 @@ export default function Hero() {
                 Get in Touch
               </button>
               <a
-                href="/assets/Mohamed_Mousa_CV.pdf"
+                href={cvFile}
                 download="Mohamed_Mousa_CV.pdf"
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-cyan-glow hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >

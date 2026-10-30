@@ -73,14 +73,26 @@
   }
 
   .section-padding {
-    @apply px-6 py-24 md:py-[108px] md:px-12 lg:px-20 max-w-7xl mx-auto;
+    @apply px-6 py-16 md:py-[108px] md:px-12 lg:px-20 max-w-7xl mx-auto;
+  }
+
+  .section-eyebrow {
+    @apply font-mono text-[13px] md:text-[14px] uppercase tracking-[0.15em] text-[#38BDF8];
+  }
+
+  .section-title {
+    @apply mt-3 text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC];
+  }
+
+  .section-subtitle {
+    @apply mt-4 text-[18px] md:text-[20px] leading-[1.6] text-[#CBD5E1] max-w-[680px] mx-auto [text-wrap:balance];
   }
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.28s ease-out, transform 0.28s ease-out;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .reveal.is-visible {
@@ -100,6 +112,103 @@
   transform: translateY(0);
 }
 
+@keyframes chevronBounce4 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-chevron-bounce {
+  animation: chevronBounce4 2s ease-in-out infinite;
+}
+
+@keyframes cardFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-enter {
+  animation: cardFadeUp 300ms ease-out both;
+}
+
+.card-outgoing {
+  opacity: 0 !important;
+  transform: scale(0.96) !important;
+  transition: opacity 150ms ease-out, transform 150ms ease-out !important;
+}
+
+@keyframes emeraldPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.25);
+  }
+}
+
+.animate-emerald-pulse {
+  animation: emeraldPulse 2s ease-in-out infinite;
+}
+
+@keyframes checkPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-check-pop {
+  animation: checkPop 350ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      240px circle at var(--mx, -500px) var(--my, -500px),
+      rgba(56, 189, 248, 0.10),
+      transparent 75%
+    );
+    opacity: 0;
+    transition: opacity 200ms ease;
+    z-index: 0;
+  }
+
+  .spotlight-card:hover::before {
+    opacity: 1;
+  }
+}
+
+.footer-wordmark {
+  color: rgba(56, 189, 248, 0.12);
+  background-image: linear-gradient(180deg, rgba(56, 189, 248, 0.22) 0%, transparent 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -111,10 +220,20 @@
   }
 
   .reveal,
-  .reveal-strip {
+  .reveal-strip,
+  .animate-card-enter,
+  .card-outgoing,
+  .animate-chevron-bounce,
+  .animate-emerald-pulse,
+  .animate-check-pop {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    animation: none !important;
+  }
+
+  .spotlight-card::before {
+    display: none !important;
   }
 }
 

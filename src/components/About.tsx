@@ -85,13 +85,13 @@ export default function About() {
       <div className="relative z-10">
         {/* Centered Header Block */}
         <div className="text-center max-w-[720px] mx-auto mb-16 reveal">
-          <span className="text-[#38BDF8] font-mono text-[13px] md:text-[14px] tracking-[0.15em] uppercase">
+          <span className="section-eyebrow">
             01 — About
           </span>
-          <h2 className="mt-3 text-[40px] md:text-[48px] leading-tight font-bold text-[#F8FAFC]">
+          <h2 className="section-title">
             Engineering software that lasts
           </h2>
-          <p className="mt-5 text-[18px] md:text-[20px] text-slate-300 leading-[1.65]">
+          <p className="section-subtitle">
             I'm a Senior Full-Stack .NET developer who builds enterprise applications meant to
             survive growth, not just launch. I own the whole path, from SQL Server schema to
             Angular UI to Azure deployment, using Clean Architecture, DDD and CQRS so codebases
