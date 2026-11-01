@@ -1,0 +1,241 @@
+{
+  "nav": {
+    "ariaPrimary": "Primary navigation",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "letsTalk": "Let's talk",
+    "toggleMenu": "Toggle navigation menu",
+    "switchLangAria": "Switch language to Italian"
+  },
+  "hero": {
+    "badge": "Available for new opportunities · Italy & Remote",
+    "firstName": "Mohamed",
+    "lastName": "Mousa",
+    "subtitle": "Senior Full-Stack .NET Developer",
+    "descStart": "I design and build scalable enterprise software with ",
+    "descAnd": " and ",
+    "descEnd": ", from database to deployment, for web and mobile.",
+    "exploreProjects": "Explore Projects",
+    "getInTouch": "Get in Touch",
+    "downloadCv": "Download CV",
+    "meta": "Puglia, Italy · Italian · English · Arabic",
+    "portraitAlt": "Portrait of Mohamed Mousa, Senior Full-Stack .NET Developer",
+    "scrollAria": "Scroll down to About section",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "01 — About",
+    "title": "Engineering software that lasts",
+    "intro": "I'm a Senior Full-Stack .NET developer who builds enterprise applications meant to survive growth, not just launch. I own the whole path, from SQL Server schema to Angular UI to Azure deployment, using Clean Architecture, DDD and CQRS so codebases stay readable and testable as teams and requirements change. I work in Italian, English and Arabic, and I've delivered for clients in Italy, the UAE and the USA.",
+    "stats": {
+      "yearsValue": "5+",
+      "yearsLabel": "Years Building",
+      "projectsValue": "13+",
+      "projectsLabel": "Projects Shipped",
+      "mobileValue": "10+",
+      "mobileLabel": "Mobile Apps",
+      "cleanValue": "Clean",
+      "cleanLabel": "Architecture First"
+    },
+    "pillars": {
+      "p1Title": "Enterprise-Grade Architecture",
+      "p1Desc": "Clean Architecture, DDD and CQRS give every system clear boundaries and testable layers, so it stays maintainable as it grows.",
+      "p2Title": "Full-Stack Ownership",
+      "p2Desc": "From SQL Server schemas and .NET APIs to Angular frontends and Flutter mobile apps, I deliver the whole stack in one consistent language.",
+      "p3Title": "Cloud & Quality",
+      "p3Desc": "Dockerized services, CI/CD on Azure DevOps and GitHub Actions, 70%+ unit test coverage and SonarQube checks, so performance and reliability are built in from the start."
+    },
+    "highlights": {
+      "heading": "Highlights",
+      "h1Metric": "50+",
+      "h1Label": "REST endpoints",
+      "h1Context": "Under 200 ms avg response, e-commerce platform",
+      "h2Metric": "70%+",
+      "h2Label": "Unit test coverage",
+      "h2Context": "xUnit + Moq, SonarQube",
+      "h3Metric": "~35%",
+      "h3Label": "Faster queries",
+      "h3Context": "T-SQL index tuning, finance app",
+      "h4Metric": "~40%",
+      "h4Label": "Faster perceived load",
+      "h4Context": "Angular lazy-loading, 8 modules",
+      "h5Metric": "200+",
+      "h5Label": "Active users",
+      "h5Context": "Personal finance SPA at peak"
+    },
+    "ctaProjects": "See my projects",
+    "ctaContact": "Let's talk"
+  },
+  "projects": {
+    "eyebrow": "02 — Projects",
+    "title": "Things I've built",
+    "subtitle": "A selection of web and mobile applications I've designed and developed end-to-end.",
+    "ndaNote": "Selected work. Client projects under NDA are not shown.",
+    "featuredLabel": "FEATURED PROJECT",
+    "featured": {
+      "badgeFeatured": "Featured",
+      "badgeWeb": "Web",
+      "title": "Audio Store: Enterprise E-Commerce Platform",
+      "description": "A production-ready e-commerce platform built end-to-end during my internship at Exprivia: a customer storefront plus an admin panel for sales analytics, order tracking and promo codes. Built on 4-layer Clean Architecture with DDD, 50+ JWT-secured REST endpoints and an Angular SPA with NgRx and 8 lazy-loaded modules.",
+      "m1Value": "50+",
+      "m1Label": "REST endpoints",
+      "m2Value": "<200 ms",
+      "m2Label": "avg API response",
+      "m3Value": "70%+",
+      "m3Label": "test coverage",
+      "viewCode": "View code",
+      "viewCodeAria": "View Audio Store source code on GitHub (opens in a new tab)",
+      "liveDemo": "Live demo",
+      "img1Alt": "Audio Store storefront home page with a featured headphone product",
+      "img1Caption": "Storefront",
+      "img2Alt": "Audio Store admin dashboard with sales totals, orders by status and sales by category",
+      "img2Caption": "Admin panel"
+    },
+    "moreProjects": "More projects",
+    "filterAria": "Filter projects by category",
+    "filters": {
+      "All": "All",
+      "Web": "Web",
+      "Mobile": "Mobile"
+    },
+    "categories": {
+      "Web": "Web",
+      "Mobile": "Mobile"
+    },
+    "showingSingular": "Showing {n} project",
+    "showingPlural": "Showing {n} projects",
+    "code": "Code",
+    "liveDemo": "Live Demo",
+    "showMoreSingular": "Show {n} more project",
+    "showMorePlural": "Show {n} more projects",
+    "showLess": "Show less",
+    "items": {
+      "1": {
+        "title": "Personal Finance App",
+        "description": "A full-stack personal finance manager for tracking income, expenses and budgets with interactive dashboards and recurring-transaction support."
+      },
+      "2": {
+        "title": "Rock Paper Scissors",
+        "description": "A classic hand game with score tracking, smooth animations and a clean responsive layout playable on any device."
+      },
+      "3": {
+        "title": "Connect 4 Game",
+        "description": "A two-player strategy game with drop animations, win detection and a minimalist board UI built in Angular."
+      },
+      "4": {
+        "title": "Multi Step Form",
+        "description": "An accessible, animated multi-step wizard with client-side validation, progress tracking and a polished custom UI."
+      },
+      "5": {
+        "title": "Wafra E-commerce",
+        "description": "A mobile commerce platform with product catalog, cart, secure checkout and order history, built around a REST API backend."
+      },
+      "6": {
+        "title": "E-commerce Product Page",
+        "description": "A responsive product detail page with image gallery, variant selection, cart preview and accessible markup."
+      },
+      "7": {
+        "title": "Attendance Management",
+        "description": "A mobile attendance system for tracking employee check-in/out, generating reports and managing leave requests via REST API."
+      },
+      "8": {
+        "title": "Let's Fly Application",
+        "description": "A flight-booking concept app with search, seat selection and a Figma-driven design system translated into a Flutter UI."
+      },
+      "9": {
+        "title": "WhatsApp Clone",
+        "description": "A real-time messaging app clone with chat lists, conversation threads and status updates powered by a REST API."
+      },
+      "10": {
+        "title": "Instagram & Facebook Clone",
+        "description": "A social media app combining feeds, stories and profile management, replicating core flows of both platforms."
+      },
+      "11": {
+        "title": "TikTok Application Clone",
+        "description": "A short-video feed app with vertical scroll, like/comment interactions and a profile screen built in Flutter."
+      },
+      "12": {
+        "title": "Lost & Found",
+        "description": "A community app to report and discover lost or found items with image uploads, search and category filters."
+      },
+      "13": {
+        "title": "Point Of Sale",
+        "description": "A mobile POS system for managing products, processing sales and printing receipts, synced with a REST API backend."
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "03 — Skills",
+    "title": "My tech toolbox",
+    "subtitle": "Technologies I work with across the stack, from databases and APIs to web and mobile interfaces.",
+    "groups": {
+      "backend": "Backend",
+      "architecture": "Architecture & Patterns",
+      "cloud": "Cloud & DevOps (Azure)",
+      "frontend": "Frontend & Web",
+      "data": "Data & Messaging",
+      "testing": "Testing & Quality"
+    },
+    "skillNames": {
+      "storedProc": "Stored Procedures & Query Optimization",
+      "integrationTesting": "Integration Testing"
+    },
+    "also": "Also: Flutter · Dart · Firebase · Agile/Scrum · Code Review · Visual Studio · Rider"
+  },
+  "contact": {
+    "eyebrow": "04 — CONTACT",
+    "titlePrefix": "Let's build something that",
+    "titleHighlight": "lasts",
+    "subtitle": "Open to full-time roles, freelance projects and collaborations. Tell me what you're building and I'll get back to you as soon as possible.",
+    "availability": "Available for new opportunities",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "emailLabel": "Email",
+    "copied": "Copied!",
+    "copyEmailAria": "Copy email address to clipboard",
+    "metaLocation": "Puglia, Italy · Italian · English · Arabic",
+    "localTimeSuffix": "local time",
+    "downloadCv": "Download CV",
+    "topicLabel": "What's this about?",
+    "topics": {
+      "job": "Job opportunity",
+      "freelance": "Freelance project",
+      "collaboration": "Collaboration",
+      "hi": "Just saying hi"
+    },
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailFieldLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about your project or the role...",
+    "send": "Send message",
+    "sending": "Sending...",
+    "successTitle": "Message sent. Thanks, I'll get back to you soon.",
+    "sendAnother": "Send another message",
+    "errorMessage": "Something went wrong. Please try again or email me directly.",
+    "retry": "Retry",
+    "errors": {
+      "nameRequired": "Please enter your name.",
+      "emailRequired": "Please enter your email.",
+      "emailInvalid": "Please enter a valid email address.",
+      "messageRequired": "Please enter a message.",
+      "messageMin": "Message should be at least 10 characters."
+    }
+  },
+  "footer": {
+    "tagline": "Senior Full-Stack .NET Developer building scalable, cloud-ready software.",
+    "navigate": "Navigate",
+    "connect": "Connect",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "downloadCv": "Download CV",
+    "copyright": "© 2026 Mohamed Mousa. Designed & built by me.",
+    "backToTop": "Back to top"
+  }
+}
+

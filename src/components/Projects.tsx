@@ -16,14 +16,25 @@ import {
   type FeaturedProject,
   type FeaturedProjectImage,
 } from '@/data/projects';
+import { useTranslation } from '@/i18n';
 
 type Filter = 'All' | ProjectCategory;
 
+const filterOptions: { value: Filter; labelKey: string; icon: typeof LayoutGrid }[] = [
+  { value: 'All', labelKey: 'projects.filters.All', icon: LayoutGrid },
+  { value: 'Web', labelKey: 'projects.filters.Web', icon: Globe },
+  { value: 'Mobile', labelKey: 'projects.filters.Mobile', icon: Smartphone },
+];
+
 function BrowserFrame({
   image,
+  altText,
+  captionText,
   className = '',
 }: {
   image: FeaturedProjectImage;
+  altText: string;
+  captionText: string;
   className?: string;
 }) {
   const [imgError, setImgError] = useState(false);
@@ -48,7 +59,7 @@ function BrowserFrame({
         {showImage ? (
           <img
             src={image.src}
-            alt={image.alt}
+            alt={altText}
             width={800}
             height={500}
             loading="lazy"
@@ -60,19 +71,19 @@ function BrowserFrame({
           // TODO: Add audio-store-storefront.png and audio-store-admin.png to the /assets/ folder
           <div
             role="img"
-            aria-label={image.alt}
+            aria-label={altText}
             className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#111827] via-[#0e1525] to-[#0B0F1A] p-4 text-center"
           >
             <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-40" />
             <span className="relative z-10 font-mono text-xs uppercase tracking-widest text-[#94A3B8]">
-              {image.caption}
+              {captionText}
             </span>
           </div>
         )}
 
         {/* Bottom-left caption pill */}
         <span className="absolute bottom-2.5 left-2.5 z-10 px-2.5 py-1 rounded-full text-[12px] leading-none font-medium text-[#F8FAFC] bg-[rgba(11,15,26,0.8)] backdrop-blur-md border border-[rgba(255,255,255,0.12)]">
-          {image.caption}
+          {captionText}
         </span>
       </div>
     </div>
@@ -80,13 +91,20 @@ function BrowserFrame({
 }
 
 function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
+  const { t } = useTranslation();
   const [storefrontImg, adminImg] = project.images;
+
+  const translatedMetrics = [
+    { value: t('projects.featured.m1Value'), label: t('projects.featured.m1Label') },
+    { value: t('projects.featured.m2Value'), label: t('projects.featured.m2Label') },
+    { value: t('projects.featured.m3Value'), label: t('projects.featured.m3Label') },
+  ];
 
   return (
     <div className="mb-16">
       <div className="mb-4 reveal">
         <span className="font-mono text-[13px] uppercase tracking-[0.15em] text-[#38BDF8]">
-          FEATURED PROJECT
+          {t('projects.featuredLabel')}
         </span>
       </div>
 
@@ -106,12 +124,22 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
             <div className="featured-mockup-group relative w-full pb-[14%]">
               {/* Storefront base frame (88% width so the offset admin frame fits within 100% column width) */}
               <div className="w-[88%]">
-                <BrowserFrame image={storefrontImg} className="mockup-frame-base" />
+                <BrowserFrame
+                  image={storefrontImg}
+                  altText={t('projects.featured.img1Alt')}
+                  captionText={t('projects.featured.img1Caption')}
+                  className="mockup-frame-base"
+                />
               </div>
 
               {/* Admin panel overlapping frame (~78% of base = ~68.6% width, offset ~12% horizontally & ~14% vertically) */}
               <div className="reveal-admin-frame absolute bottom-0 right-0 w-[68.6%] z-10">
-                <BrowserFrame image={adminImg} className="mockup-frame-overlay" />
+                <BrowserFrame
+                  image={adminImg}
+                  altText={t('projects.featured.img2Alt')}
+                  captionText={t('projects.featured.img2Caption')}
+                  className="mockup-frame-overlay"
+                />
               </div>
             </div>
           </div>
@@ -126,14 +154,14 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
                     key={b.label}
                     className="px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950"
                   >
-                    {b.label}
+                    {t('projects.featured.badgeFeatured')}
                   </span>
                 ) : (
                   <span
                     key={b.label}
                     className="px-3 py-1 rounded-full text-xs font-semibold bg-ink-950/75 backdrop-blur border border-[rgba(255,255,255,0.10)] text-[#38BDF8]"
                   >
-                    {b.label}
+                    {t('projects.featured.badgeWeb')}
                   </span>
                 ),
               )}
@@ -144,17 +172,17 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
               id="featured-project-title"
               className="text-[28px] md:text-[32px] lg:text-[36px] font-bold tracking-[-0.02em] leading-tight text-[#F8FAFC] mb-4"
             >
-              {project.title}
+              {t('projects.featured.title')}
             </h3>
 
             {/* Description */}
             <p className="text-[16px] md:text-[17px] leading-[1.65] text-[#CBD5E1] mb-6">
-              {project.description}
+              {t('projects.featured.description')}
             </p>
 
             {/* Metrics row */}
             <ul className="w-full grid grid-cols-2 sm:grid-cols-3 gap-y-4 py-4 mb-6 border-y border-[rgba(255,255,255,0.08)]">
-              {project.metrics.map((m, idx) => (
+              {translatedMetrics.map((m, idx) => (
                 <li
                   key={m.label}
                   className={`${
@@ -191,11 +219,11 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
                 href={project.codeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="View Audio Store source code on GitHub (opens in a new tab)"
+                aria-label={t('projects.featured.viewCodeAria')}
                 className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/45 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
                 <Github className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
-                <span>View code</span>
+                <span>{t('projects.featured.viewCode')}</span>
               </a>
 
               {project.liveUrl && (
@@ -206,7 +234,7 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
                   className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/45 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
                   <ExternalLink className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
-                  <span>Live demo</span>
+                  <span>{t('projects.featured.liveDemo')}</span>
                 </a>
               )}
             </div>
@@ -217,20 +245,15 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
       {/* "More projects" divider with 64px spacing above and below */}
       <div className="mt-16 mb-16 flex items-center gap-4 reveal" aria-hidden="true">
         <div className="h-px flex-1 bg-[rgba(255,255,255,0.08)]" />
-        <span className="text-[13px] text-[#94A3B8] font-medium">More projects</span>
+        <span className="text-[13px] text-[#94A3B8] font-medium">{t('projects.moreProjects')}</span>
         <div className="h-px flex-1 bg-[rgba(255,255,255,0.08)]" />
       </div>
     </div>
   );
 }
 
-const filterOptions: { value: Filter; label: string; icon: typeof LayoutGrid }[] = [
-  { value: 'All', label: 'All', icon: LayoutGrid },
-  { value: 'Web', label: 'Web', icon: Globe },
-  { value: 'Mobile', label: 'Mobile', icon: Smartphone },
-];
-
 export default function Projects() {
+  const { lang, t } = useTranslation();
   const [active, setActive] = useState<Filter>('All');
   const [displayedFilter, setDisplayedFilter] = useState<Filter>('All');
   const [phase, setPhase] = useState<'idle' | 'out' | 'in'>('idle');
@@ -271,7 +294,7 @@ export default function Projects() {
     if (btn) {
       setThumb({ left: btn.offsetLeft, width: btn.offsetWidth });
     }
-  }, [active]);
+  }, [active, lang]);
 
   useEffect(() => {
     updateThumb();
@@ -401,14 +424,10 @@ export default function Projects() {
 
       <div className="relative z-10">
         <div className="text-center mb-12 reveal">
-          <span className="section-eyebrow">02 — Projects</span>
-          <h2 className="section-title">Things I've built</h2>
-          <p className="section-subtitle">
-            A selection of web and mobile applications I've designed and developed end-to-end.
-          </p>
-          <p className="mt-3 text-[14px] text-[#94A3B8]">
-            Selected work. Client projects under NDA are not shown.
-          </p>
+          <span className="section-eyebrow">{t('projects.eyebrow')}</span>
+          <h2 className="section-title">{t('projects.title')}</h2>
+          <p className="section-subtitle">{t('projects.subtitle')}</p>
+          <p className="mt-3 text-[14px] text-[#94A3B8]">{t('projects.ndaNote')}</p>
         </div>
 
         {/* Featured Project Block (always visible, outside filter & grid) */}
@@ -418,7 +437,7 @@ export default function Projects() {
         <div className="flex flex-col items-center mb-12 reveal">
           <div
             role="radiogroup"
-            aria-label="Filter projects by category"
+            aria-label={t('projects.filterAria')}
             className="relative inline-flex w-full sm:w-auto items-center justify-center p-1 rounded-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] backdrop-blur-[8px]"
           >
             {/* Sliding thumb */}
@@ -451,7 +470,7 @@ export default function Projects() {
                   }`}
                 >
                   <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span>{opt.label}</span>
+                  <span>{t(opt.labelKey)}</span>
                 </button>
               );
             })}
@@ -461,7 +480,9 @@ export default function Projects() {
             aria-live="polite"
             className="mt-3 text-center text-[13px] md:text-[14px] text-[#94A3B8]"
           >
-            Showing {activeCount} {activeCount === 1 ? 'project' : 'projects'}
+            {activeCount === 1
+              ? t('projects.showingSingular', { n: activeCount })
+              : t('projects.showingPlural', { n: activeCount })}
           </p>
         </div>
 
@@ -479,6 +500,8 @@ export default function Projects() {
               {visible.map((project, i) => {
                 const isClipped = canCollapse && !expanded && i >= visibleCount;
                 const isNewlyExpanded = newlyRevealed && expanded && i >= visibleCount;
+                const translatedTitle = t(`projects.items.${project.id}.title`);
+                const translatedDescription = t(`projects.items.${project.id}.description`);
 
                 const animClass =
                   phase === 'out'
@@ -512,7 +535,7 @@ export default function Projects() {
                         <>
                           <img
                             src={project.image}
-                            alt={project.title}
+                            alt={translatedTitle}
                             loading="lazy"
                             className="h-full w-full object-cover object-center [@media(hover:hover)]:group-hover:scale-105 transition-transform duration-500"
                           />
@@ -540,7 +563,7 @@ export default function Projects() {
                       )}
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-ink-950/75 backdrop-blur border border-[rgba(255,255,255,0.10)] text-[#38BDF8]">
-                          {project.category}
+                          {t(`projects.categories.${project.category}`)}
                         </span>
                       </div>
                     </div>
@@ -548,10 +571,10 @@ export default function Projects() {
                     {/* Body */}
                     <div className="p-6 flex flex-col flex-1">
                       <h3 className="text-[22px] leading-snug font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors mb-2.5">
-                        {project.title}
+                        {translatedTitle}
                       </h3>
                       <p className="text-[15px] md:text-[16px] text-[#CBD5E1] leading-[1.6] line-clamp-4 mb-5">
-                        {project.description}
+                        {translatedDescription}
                       </p>
 
                       {/* Tech badges */}
@@ -576,7 +599,7 @@ export default function Projects() {
                           className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-[#38BDF8] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 transition-colors"
                         >
                           <Github className="h-4 w-4" aria-hidden="true" />
-                          Code
+                          {t('projects.code')}
                         </a>
                         {project.demo && (
                           <a
@@ -587,7 +610,7 @@ export default function Projects() {
                             className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-[#38BDF8] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 transition-colors"
                           >
                             <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                            Live Demo
+                            {t('projects.liveDemo')}
                           </a>
                         )}
                       </div>
@@ -622,13 +645,15 @@ export default function Projects() {
               >
                 {expanded ? (
                   <>
-                    <span>Show less</span>
+                    <span>{t('projects.showLess')}</span>
                     <ChevronUp className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
                   </>
                 ) : (
                   <>
                     <span>
-                      Show {hiddenCount} more {hiddenCount === 1 ? 'project' : 'projects'}
+                      {hiddenCount === 1
+                        ? t('projects.showMoreSingular', { n: hiddenCount })
+                        : t('projects.showMorePlural', { n: hiddenCount })}
                     </span>
                     <ChevronDown
                       className="h-4 w-4 text-[#38BDF8] animate-chevron-bounce"

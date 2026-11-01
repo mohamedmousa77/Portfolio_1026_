@@ -1,80 +1,79 @@
 import { Layers, Server, Smartphone, Award, FolderGit2, Mail } from 'lucide-react';
+import { useTranslation } from '@/i18n';
 
 interface StatItem {
   icon: typeof Server;
-  value: string;
-  label: string;
+  valueKey: string;
+  labelKey: string;
 }
 
 interface PillarItem {
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   chips: string[];
 }
 
 interface HighlightItem {
-  metric: string;
-  label: string;
-  context: string;
+  metricKey: string;
+  labelKey: string;
+  contextKey: string;
 }
 
 const stats: StatItem[] = [
-  { icon: Server, value: '5+', label: 'Years Building' },
-  { icon: Layers, value: '13+', label: 'Projects Shipped' },
-  { icon: Smartphone, value: '10+', label: 'Mobile Apps' },
-  { icon: Award, value: 'Clean', label: 'Architecture First' },
+  { icon: Server, valueKey: 'about.stats.yearsValue', labelKey: 'about.stats.yearsLabel' },
+  { icon: Layers, valueKey: 'about.stats.projectsValue', labelKey: 'about.stats.projectsLabel' },
+  { icon: Smartphone, valueKey: 'about.stats.mobileValue', labelKey: 'about.stats.mobileLabel' },
+  { icon: Award, valueKey: 'about.stats.cleanValue', labelKey: 'about.stats.cleanLabel' },
 ];
 
 const pillars: PillarItem[] = [
   {
-    title: 'Enterprise-Grade Architecture',
-    description:
-      'Clean Architecture, DDD and CQRS give every system clear boundaries and testable layers, so it stays maintainable as it grows.',
+    titleKey: 'about.pillars.p1Title',
+    descriptionKey: 'about.pillars.p1Desc',
     chips: ['Clean Architecture', 'DDD', 'CQRS', 'SOLID'],
   },
   {
-    title: 'Full-Stack Ownership',
-    description:
-      'From SQL Server schemas and .NET APIs to Angular frontends and Flutter mobile apps, I deliver the whole stack in one consistent language.',
+    titleKey: 'about.pillars.p2Title',
+    descriptionKey: 'about.pillars.p2Desc',
     chips: ['ASP.NET Core', 'SQL Server', 'Angular', 'Flutter'],
   },
   {
-    title: 'Cloud & Quality',
-    description:
-      'Dockerized services, CI/CD on Azure DevOps and GitHub Actions, 70%+ unit test coverage and SonarQube checks, so performance and reliability are built in from the start.',
+    titleKey: 'about.pillars.p3Title',
+    descriptionKey: 'about.pillars.p3Desc',
     chips: ['Azure DevOps', 'Docker', 'xUnit & Moq', 'SonarQube'],
   },
 ];
 
 const highlights: HighlightItem[] = [
   {
-    metric: '50+',
-    label: 'REST endpoints',
-    context: 'Under 200 ms avg response, e-commerce platform',
+    metricKey: 'about.highlights.h1Metric',
+    labelKey: 'about.highlights.h1Label',
+    contextKey: 'about.highlights.h1Context',
   },
   {
-    metric: '70%+',
-    label: 'Unit test coverage',
-    context: 'xUnit + Moq, SonarQube',
+    metricKey: 'about.highlights.h2Metric',
+    labelKey: 'about.highlights.h2Label',
+    contextKey: 'about.highlights.h2Context',
   },
   {
-    metric: '~35%',
-    label: 'Faster queries',
-    context: 'T-SQL index tuning, finance app',
+    metricKey: 'about.highlights.h3Metric',
+    labelKey: 'about.highlights.h3Label',
+    contextKey: 'about.highlights.h3Context',
   },
   {
-    metric: '~40%',
-    label: 'Faster perceived load',
-    context: 'Angular lazy-loading, 8 modules',
+    metricKey: 'about.highlights.h4Metric',
+    labelKey: 'about.highlights.h4Label',
+    contextKey: 'about.highlights.h4Context',
   },
   {
-    metric: '200+',
-    label: 'Active users',
-    context: 'Personal finance SPA at peak',
+    metricKey: 'about.highlights.h5Metric',
+    labelKey: 'about.highlights.h5Label',
+    contextKey: 'about.highlights.h5Context',
   },
 ];
 
 export default function About() {
+  const { t } = useTranslation();
   const scrollTo = (href: string) =>
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -86,17 +85,13 @@ export default function About() {
         {/* Centered Header Block */}
         <div className="text-center max-w-[720px] mx-auto mb-16 reveal">
           <span className="section-eyebrow">
-            01 — About
+            {t('about.eyebrow')}
           </span>
           <h2 className="section-title">
-            Engineering software that lasts
+            {t('about.title')}
           </h2>
           <p className="section-subtitle">
-            I'm a Senior Full-Stack .NET developer who builds enterprise applications meant to
-            survive growth, not just launch. I own the whole path, from SQL Server schema to
-            Angular UI to Azure deployment, using Clean Architecture, DDD and CQRS so codebases
-            stay readable and testable as teams and requirements change. I work in Italian, English
-            and Arabic, and I've delivered for clients in Italy, the UAE and the USA.
+            {t('about.intro')}
           </p>
         </div>
 
@@ -104,7 +99,7 @@ export default function About() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 reveal">
           {stats.map((s) => (
             <div
-              key={s.label}
+              key={s.labelKey}
               className="glass-card p-8 text-center hover:glow-border hover:-translate-y-0.5 transition-all duration-200 group"
             >
               <s.icon
@@ -112,10 +107,10 @@ export default function About() {
                 className="h-7 w-7 mx-auto mb-3 text-[#38BDF8] group-hover:scale-110 transition-transform duration-200"
               />
               <div className="text-[36px] md:text-[44px] leading-none font-bold text-[#F8FAFC]">
-                {s.value}
+                {t(s.valueKey)}
               </div>
               <div className="text-[14px] md:text-[15px] text-slate-300 mt-2 font-medium">
-                {s.label}
+                {t(s.labelKey)}
               </div>
             </div>
           ))}
@@ -125,7 +120,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
           {pillars.map((p, i) => (
             <div
-              key={p.title}
+              key={p.titleKey}
               className="glass-card p-8 md:p-9 flex flex-col justify-between hover:glow-border hover:-translate-y-0.5 transition-all duration-200"
               style={{ transitionDelay: `${i * 70}ms` }}
             >
@@ -137,9 +132,9 @@ export default function About() {
                   <span className="font-mono text-[#38BDF8] font-bold text-lg">{i + 1}</span>
                 </div>
                 <h3 className="text-[20px] md:text-[22px] font-semibold text-[#F8FAFC] mb-3">
-                  {p.title}
+                  {t(p.titleKey)}
                 </h3>
-                <p className="text-[16px] text-slate-300 leading-[1.6]">{p.description}</p>
+                <p className="text-[16px] text-slate-300 leading-[1.6]">{t(p.descriptionKey)}</p>
               </div>
 
               <div className="flex flex-wrap gap-2 pt-6 mt-6 border-t border-[rgba(255,255,255,0.08)]">
@@ -162,14 +157,12 @@ export default function About() {
             id="highlights-title"
             className="text-center font-mono text-[13px] md:text-[14px] uppercase tracking-[0.15em] text-[#38BDF8] mb-6"
           >
-            Highlights
+            {t('about.highlights.heading')}
           </h3>
 
           <div className="w-full rounded-[20px] border border-[rgba(255,255,255,0.08)] bg-white/[0.02] p-8">
             <ul className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-5 sm:gap-6 lg:gap-0">
               {highlights.map((item, idx) => {
-                // On tablet (sm: 640-1023px), 6-col grid lets first 3 items span 2 cols each (3 cols row 1),
-                // and items 4 & 5 span 2 cols with col-start-2 on item 4 to center the 2 items on row 2.
                 const tabletSpan =
                   idx === 3
                     ? 'sm:col-span-2 sm:col-start-2 lg:col-span-1 lg:col-start-auto'
@@ -185,18 +178,18 @@ export default function About() {
 
                 return (
                   <li
-                    key={item.label}
+                    key={item.labelKey}
                     style={{ transitionDelay: `${idx * 60}ms` }}
                     className={`reveal-strip text-center lg:text-left transition-transform duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 group ${tabletSpan} ${dividers} ${mobilePadding} ${desktopRightPad}`}
                   >
                     <div className="text-[36px] md:text-[40px] leading-tight font-bold tracking-[-0.02em] metric-gradient [@media(hover:hover)]:group-hover:brightness-110 transition-all duration-200">
-                      {item.metric}
+                      {t(item.metricKey)}
                     </div>
                     <div className="mt-1 text-[16px] font-semibold text-[#F8FAFC]">
-                      {item.label}
+                      {t(item.labelKey)}
                     </div>
                     <div className="mt-1 text-[14px] leading-[1.5] text-[#94A3B8]">
-                      {item.context}
+                      {t(item.contextKey)}
                     </div>
                   </li>
                 );
@@ -213,7 +206,7 @@ export default function About() {
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             <FolderGit2 className="h-5 w-5" aria-hidden="true" />
-            See my projects
+            {t('about.ctaProjects')}
           </button>
           <button
             type="button"
@@ -221,7 +214,7 @@ export default function About() {
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 bg-white/5 text-[#F8FAFC] font-semibold hover:border-cyan/40 hover:bg-cyan/5 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             <Mail className="h-5 w-5" aria-hidden="true" />
-            Let's talk
+            {t('about.ctaContact')}
           </button>
         </div>
       </div>

@@ -6,22 +6,25 @@ import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { useReveal } from '@/hooks/useReveal';
+import { LanguageProvider } from '@/i18n';
 
 function App() {
   useReveal();
 
   return (
-    <div className="relative min-h-screen bg-ink-950">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="relative min-h-screen bg-ink-950">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 }
 

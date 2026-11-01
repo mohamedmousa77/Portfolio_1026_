@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X, Code2, Languages } from 'lucide-react';
+import { useTranslation } from '@/i18n';
 
 const links = [
-  { label: 'Home', href: '#home', id: 'home' },
-  { label: 'About', href: '#about', id: 'about' },
-  { label: 'Projects', href: '#projects', id: 'projects' },
-  { label: 'Skills', href: '#skills', id: 'skills' },
-  { label: 'Contact', href: '#contact', id: 'contact' },
+  { labelKey: 'nav.home', href: '#home', id: 'home' },
+  { labelKey: 'nav.about', href: '#about', id: 'about' },
+  { labelKey: 'nav.projects', href: '#projects', id: 'projects' },
+  { labelKey: 'nav.skills', href: '#skills', id: 'skills' },
+  { labelKey: 'nav.contact', href: '#contact', id: 'contact' },
 ];
 
 export default function Navbar() {
+  const { lang, toggleLang, t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState('home');
@@ -49,7 +51,7 @@ export default function Navbar() {
       }`}
     >
       <nav
-        aria-label="Primary navigation"
+        aria-label={t('nav.ariaPrimary')}
         className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between"
       >
         <a
@@ -87,7 +89,7 @@ export default function Navbar() {
                     isActive ? 'text-cyan-glow' : 'text-slate-300 hover:text-white'
                   }`}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                   <span
                     aria-hidden="true"
                     className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-glow transition-all duration-300 ${
@@ -100,31 +102,57 @@ export default function Navbar() {
           })}
         </ul>
 
-        <a
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            handleClick('#contact', 'contact');
-          }}
-          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan to-electric text-ink-950 text-sm font-semibold hover:shadow-lg hover:shadow-cyan/30 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-        >
-          Let's talk
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleLang}
+            aria-label={t('nav.switchLangAria')}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[rgba(255,255,255,0.12)] bg-white/[0.04] text-xs font-mono font-semibold text-slate-300 hover:text-white hover:border-cyan/40 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+          >
+            <Languages className="h-3.5 w-3.5 text-[#38BDF8]" aria-hidden="true" />
+            <span className={lang === 'it' ? 'text-[#38BDF8]' : 'text-slate-400'}>IT</span>
+            <span className="text-slate-600" aria-hidden="true">/</span>
+            <span className={lang === 'en' ? 'text-[#38BDF8]' : 'text-slate-400'}>EN</span>
+          </button>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle navigation menu"
-          aria-expanded={open}
-          aria-controls="mobile-navigation-menu"
-          className="md:hidden text-slate-200 hover:text-white p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-        >
-          {open ? (
-            <X className="h-6 w-6" aria-hidden="true" />
-          ) : (
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          )}
-        </button>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick('#contact', 'contact');
+            }}
+            className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan to-electric text-ink-950 text-sm font-semibold hover:shadow-lg hover:shadow-cyan/30 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+          >
+            {t('nav.letsTalk')}
+          </a>
+        </div>
+
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleLang}
+            aria-label={t('nav.switchLangAria')}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-[rgba(255,255,255,0.12)] bg-white/[0.04] text-xs font-mono font-semibold text-slate-200 hover:text-white hover:border-cyan/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
+          >
+            <Languages className="h-3.5 w-3.5 text-[#38BDF8]" aria-hidden="true" />
+            <span>{lang.toUpperCase()}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={t('nav.toggleMenu')}
+            aria-expanded={open}
+            aria-controls="mobile-navigation-menu"
+            className="text-slate-200 hover:text-white p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+          >
+            {open ? (
+              <X className="h-6 w-6" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -152,7 +180,7 @@ export default function Navbar() {
                       : 'text-slate-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </a>
               </li>
             );
@@ -166,7 +194,7 @@ export default function Navbar() {
               }}
               className="block py-3 px-4 mt-2 rounded-lg text-center bg-gradient-to-r from-cyan to-electric text-ink-950 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
             >
-              Let's talk
+              {t('nav.letsTalk')}
             </a>
           </li>
         </ul>

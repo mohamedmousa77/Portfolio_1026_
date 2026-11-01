@@ -1,19 +1,23 @@
 import { Server, Layers, Cloud, Monitor, Database, CheckCircle2 } from 'lucide-react';
+import { useTranslation } from '@/i18n';
 
 interface SkillItem {
   name: string;
+  nameKey?: string;
   core?: boolean;
 }
 
 interface SkillGroup {
-  title: string;
+  id: string;
+  titleKey: string;
   icon: typeof Server;
   skills: SkillItem[];
 }
 
 const groups: SkillGroup[] = [
   {
-    title: 'Backend',
+    id: 'backend',
+    titleKey: 'skills.groups.backend',
     icon: Server,
     skills: [
       { name: 'C#', core: true },
@@ -26,7 +30,8 @@ const groups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Architecture & Patterns',
+    id: 'architecture',
+    titleKey: 'skills.groups.architecture',
     icon: Layers,
     skills: [
       { name: 'Clean Architecture', core: true },
@@ -39,7 +44,8 @@ const groups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Cloud & DevOps (Azure)',
+    id: 'cloud',
+    titleKey: 'skills.groups.cloud',
     icon: Cloud,
     skills: [
       {
@@ -53,7 +59,8 @@ const groups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Frontend & Web',
+    id: 'frontend',
+    titleKey: 'skills.groups.frontend',
     icon: Monitor,
     skills: [
       { name: 'Angular', core: true },
@@ -67,12 +74,13 @@ const groups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Data & Messaging',
+    id: 'data',
+    titleKey: 'skills.groups.data',
     icon: Database,
     skills: [
       { name: 'SQL Server', core: true },
       { name: 'T-SQL' },
-      { name: 'Stored Procedures & Query Optimization' },
+      { name: 'Stored Procedures & Query Optimization', nameKey: 'skills.skillNames.storedProc' },
       { name: 'PostgreSQL' },
       { name: 'SSIS (ETL)' },
       { name: 'RabbitMQ' },
@@ -80,14 +88,15 @@ const groups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Testing & Quality',
+    id: 'testing',
+    titleKey: 'skills.groups.testing',
     icon: CheckCircle2,
     skills: [
       { name: 'xUnit', core: true },
       { name: 'NUnit' },
       { name: 'Moq' },
       { name: 'TDD' },
-      { name: 'Integration Testing' },
+      { name: 'Integration Testing', nameKey: 'skills.skillNames.integrationTesting' },
       { name: 'SonarQube' },
       { name: 'Swagger / OpenAPI' },
       { name: 'Postman' },
@@ -96,6 +105,8 @@ const groups: SkillGroup[] = [
 ];
 
 export default function Skills() {
+  const { t } = useTranslation();
+
   return (
     <section id="skills" className="relative py-16 md:py-[108px] px-6 md:px-12 lg:px-20 max-w-[1200px] mx-auto">
       <div
@@ -106,22 +117,21 @@ export default function Skills() {
       <div className="relative z-10">
         <div className="text-center mb-14 reveal">
           <span className="section-eyebrow">
-            03 — Skills
+            {t('skills.eyebrow')}
           </span>
-          <h2 className="section-title">My tech toolbox</h2>
+          <h2 className="section-title">{t('skills.title')}</h2>
           <p className="section-subtitle">
-            Technologies I work with across the stack, from databases and APIs to web and mobile
-            interfaces.
+            {t('skills.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
           {groups.map((group, gi) => {
-            const isAzureHighlight = group.title === 'Cloud & DevOps (Azure)';
+            const isAzureHighlight = group.id === 'cloud';
 
             return (
               <div
-                key={group.title}
+                key={group.id}
                 style={{ transitionDelay: `${gi * 60}ms` }}
                 className={`flex flex-col p-6 rounded-[20px] transition-all duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 reveal ${
                   isAzureHighlight
@@ -137,7 +147,7 @@ export default function Skills() {
                     <group.icon className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
                   <h3 className="text-[20px] font-semibold text-[#F8FAFC] leading-snug lg:whitespace-nowrap">
-                    {group.title}
+                    {t(group.titleKey)}
                   </h3>
                 </div>
 
@@ -151,7 +161,7 @@ export default function Skills() {
                           : 'bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-[#CBD5E1]'
                       }`}
                     >
-                      {skill.name}
+                      {skill.nameKey ? t(skill.nameKey) : skill.name}
                     </li>
                   ))}
                 </ul>
@@ -161,7 +171,7 @@ export default function Skills() {
         </div>
 
         <p className="mt-10 text-center text-[14px] md:text-[15px] text-[#94A3B8] reveal">
-          Also: Flutter · Dart · Firebase · Agile/Scrum · Code Review · Visual Studio · Rider
+          {t('skills.also')}
         </p>
       </div>
     </section>

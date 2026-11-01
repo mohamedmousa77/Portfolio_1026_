@@ -1,0 +1,241 @@
+{
+  "nav": {
+    "ariaPrimary": "Navigazione principale",
+    "home": "Home",
+    "about": "Chi sono",
+    "projects": "Progetti",
+    "skills": "Competenze",
+    "contact": "Contatti",
+    "letsTalk": "Parliamone",
+    "toggleMenu": "Apri o chiudi il menu di navigazione",
+    "switchLangAria": "Cambia lingua in Inglese"
+  },
+  "hero": {
+    "badge": "Disponibile per nuove opportunità · Italia & Remoto",
+    "firstName": "Mohamed",
+    "lastName": "Mousa",
+    "subtitle": "Senior Full-Stack .NET Developer",
+    "descStart": "Progetto e sviluppo software enterprise scalabile con ",
+    "descAnd": " e ",
+    "descEnd": ", dal database al deployment, per web e mobile.",
+    "exploreProjects": "Esplora i Progetti",
+    "getInTouch": "Contattami",
+    "downloadCv": "Scarica CV",
+    "meta": "Puglia, Italia · Italiano · Inglese · Arabo",
+    "portraitAlt": "Ritratto di Mohamed Mousa, Senior Full-Stack .NET Developer",
+    "scrollAria": "Scorri verso la sezione Chi sono",
+    "scroll": "Scorri"
+  },
+  "about": {
+    "eyebrow": "01 — Chi sono",
+    "title": "Ingegnerizzare software che dura nel tempo",
+    "intro": "Sono uno sviluppatore Senior Full-Stack .NET che realizza applicazioni enterprise progettate per sostenere la crescita, non solo il lancio. Seguo l'intero ciclo di sviluppo, dallo schema SQL Server alla UI in Angular fino al deployment su Azure, adottando Clean Architecture, DDD e CQRS affinché il codice resti leggibile e testabile al crescere del team e dei requisiti. Lavoro in italiano, inglese e arabo e ho consegnato progetti per clienti in Italia, Emirati Arabi Uniti e Stati Uniti.",
+    "stats": {
+      "yearsValue": "5+",
+      "yearsLabel": "Anni di esperienza",
+      "projectsValue": "13+",
+      "projectsLabel": "Progetti completati",
+      "mobileValue": "10+",
+      "mobileLabel": "App Mobile",
+      "cleanValue": "Clean",
+      "cleanLabel": "Architecture First"
+    },
+    "pillars": {
+      "p1Title": "Architettura Enterprise",
+      "p1Desc": "Clean Architecture, DDD e CQRS conferiscono a ogni sistema confini chiari e layer testabili, mantenendolo manutenibile nel tempo.",
+      "p2Title": "Ownership Full-Stack",
+      "p2Desc": "Dagli schemi SQL Server e le API .NET ai frontend Angular e alle app mobile in Flutter, realizzo l'intero stack con un linguaggio coerente.",
+      "p3Title": "Cloud & Qualità",
+      "p3Desc": "Servizi containerizzati con Docker, CI/CD su Azure DevOps e GitHub Actions, oltre il 70% di copertura unit test e controlli SonarQube, per garantire prestazioni e affidabilità fin dall'inizio."
+    },
+    "highlights": {
+      "heading": "Risultati chiave",
+      "h1Metric": "50+",
+      "h1Label": "Endpoint REST",
+      "h1Context": "Risposta media <200 ms, piattaforma e-commerce",
+      "h2Metric": "70%+",
+      "h2Label": "Copertura unit test",
+      "h2Context": "xUnit + Moq, SonarQube",
+      "h3Metric": "~35%",
+      "h3Label": "Query più veloci",
+      "h3Context": "Ottimizzazione indici T-SQL, app finanziaria",
+      "h4Metric": "~40%",
+      "h4Label": "Caricamento percepito più rapido",
+      "h4Context": "Lazy-loading Angular, 8 moduli",
+      "h5Metric": "200+",
+      "h5Label": "Utenti attivi",
+      "h5Context": "SPA di finanza personale al picco"
+    },
+    "ctaProjects": "Vedi i miei progetti",
+    "ctaContact": "Parliamone"
+  },
+  "projects": {
+    "eyebrow": "02 — Progetti",
+    "title": "Cose che ho costruito",
+    "subtitle": "Una selezione di applicazioni web e mobile che ho progettato e sviluppato end-to-end.",
+    "ndaNote": "Lavori selezionati. I progetti per clienti coperti da NDA non sono mostrati.",
+    "featuredLabel": "PROGETTO IN EVIDENZA",
+    "featured": {
+      "badgeFeatured": "In evidenza",
+      "badgeWeb": "Web",
+      "title": "Audio Store: Piattaforma E-Commerce Enterprise",
+      "description": "Una piattaforma e-commerce pronta per la produzione sviluppata end-to-end durante il mio tirocinio presso Exprivia: uno storefront per i clienti e un pannello di amministrazione per statistiche di vendita, tracciamento ordini e codici promozionali. Basata su Clean Architecture a 4 livelli con DDD, oltre 50 endpoint REST protetti da JWT e una SPA Angular con NgRx e 8 moduli lazy-loaded.",
+      "m1Value": "50+",
+      "m1Label": "endpoint REST",
+      "m2Value": "<200 ms",
+      "m2Label": "risposta media API",
+      "m3Value": "70%+",
+      "m3Label": "copertura test",
+      "viewCode": "Vedi codice",
+      "viewCodeAria": "Visualizza il codice sorgente di Audio Store su GitHub (si apre in una nuova scheda)",
+      "liveDemo": "Demo live",
+      "img1Alt": "Home page dello storefront Audio Store con un prodotto cuffie in evidenza",
+      "img1Caption": "Storefront",
+      "img2Alt": "Dashboard di amministrazione Audio Store con totali vendite, ordini per stato e vendite per categoria",
+      "img2Caption": "Pannello admin"
+    },
+    "moreProjects": "Altri progetti",
+    "filterAria": "Filtra i progetti per categoria",
+    "filters": {
+      "All": "Tutti",
+      "Web": "Web",
+      "Mobile": "Mobile"
+    },
+    "categories": {
+      "Web": "Web",
+      "Mobile": "Mobile"
+    },
+    "showingSingular": "Mostrando {n} progetto",
+    "showingPlural": "Mostrando {n} progetti",
+    "code": "Codice",
+    "liveDemo": "Demo Live",
+    "showMoreSingular": "Mostra {n} altro progetto",
+    "showMorePlural": "Mostra altri {n} progetti",
+    "showLess": "Mostra meno",
+    "items": {
+      "1": {
+        "title": "App di Finanza Personale",
+        "description": "Un gestore full-stack per le finanze personali che monitora entrate, uscite e budget con dashboard interattive e supporto per le transazioni ricorrenti."
+      },
+      "2": {
+        "title": "Morra Cinese (Rock Paper Scissors)",
+        "description": "Il classico gioco con tracciamento del punteggio, animazioni fluide e un layout responsive pulito giocabile su qualsiasi dispositivo."
+      },
+      "3": {
+        "title": "Forza 4 (Connect 4)",
+        "description": "Un gioco di strategia per due giocatori con animazioni di caduta, rilevamento della vittoria e un'interfaccia minimalista realizzata in Angular."
+      },
+      "4": {
+        "title": "Form Multi-Step",
+        "description": "Un wizard multi-step accessibile e animato con validazione lato client, monitoraggio dell'avanzamento e un'interfaccia personalizzata curata."
+      },
+      "5": {
+        "title": "Wafra E-commerce",
+        "description": "Una piattaforma di mobile commerce con catalogo prodotti, carrello, checkout sicuro e storico ordini, basata su un backend REST API."
+      },
+      "6": {
+        "title": "Pagina Prodotto E-commerce",
+        "description": "Una pagina di dettaglio prodotto responsive con galleria immagini, selezione varianti, anteprima carrello e markup accessibile."
+      },
+      "7": {
+        "title": "Gestione Presenze (Attendance)",
+        "description": "Un sistema mobile di rilevazione presenze per monitorare check-in/out dei dipendenti, generare report e gestire richieste di permesso tramite REST API."
+      },
+      "8": {
+        "title": "Applicazione Let's Fly",
+        "description": "Un'app concept per la prenotazione di voli con ricerca, selezione del posto e un design system progettato in Figma e tradotto in UI Flutter."
+      },
+      "9": {
+        "title": "Clone di WhatsApp",
+        "description": "Un clone di app di messaggistica in tempo reale con lista chat, conversazioni e aggiornamenti di stato alimentati da REST API."
+      },
+      "10": {
+        "title": "Clone di Instagram & Facebook",
+        "description": "Un'app social media che combina feed, storie e gestione del profilo, replicando i flussi principali di entrambe le piattaforme."
+      },
+      "11": {
+        "title": "Clone di TikTok",
+        "description": "Un'app di feed per video brevi con scorrimento verticale, interazioni like/commenti e schermata profilo sviluppata in Flutter."
+      },
+      "12": {
+        "title": "Oggetti Smarriti (Lost & Found)",
+        "description": "Un'app community per segnalare e ritrovare oggetti smarriti o trovati con caricamento immagini, ricerca e filtri per categoria."
+      },
+      "13": {
+        "title": "Sistema Point Of Sale (POS)",
+        "description": "Un sistema POS mobile per gestire prodotti, elaborare vendite e stampare ricevute, sincronizzato con un backend REST API."
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "03 — Competenze",
+    "title": "Il mio stack tecnologico",
+    "subtitle": "Le tecnologie con cui lavoro sull'intero stack, dai database e le API alle interfacce web e mobile.",
+    "groups": {
+      "backend": "Backend",
+      "architecture": "Architettura & Pattern",
+      "cloud": "Cloud & DevOps (Azure)",
+      "frontend": "Frontend & Web",
+      "data": "Dati & Messaging",
+      "testing": "Testing & Qualità"
+    },
+    "skillNames": {
+      "storedProc": "Stored Procedure & Ottimizzazione Query",
+      "integrationTesting": "Integration Testing"
+    },
+    "also": "Inoltre: Flutter · Dart · Firebase · Agile/Scrum · Code Review · Visual Studio · Rider"
+  },
+  "contact": {
+    "eyebrow": "04 — CONTATTI",
+    "titlePrefix": "Costruiamo qualcosa che",
+    "titleHighlight": "duri",
+    "subtitle": "Disponibile per ruoli full-time, progetti freelance e collaborazioni. Raccontami cosa stai costruendo e ti risponderò il prima possibile.",
+    "availability": "Disponibile per nuove opportunità",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "emailLabel": "Email",
+    "copied": "Copiato!",
+    "copyEmailAria": "Copia indirizzo email negli appunti",
+    "metaLocation": "Puglia, Italia · Italiano · Inglese · Arabo",
+    "localTimeSuffix": "ora locale",
+    "downloadCv": "Scarica CV",
+    "topicLabel": "Di cosa vorresti parlare?",
+    "topics": {
+      "job": "Opportunità di lavoro",
+      "freelance": "Progetto freelance",
+      "collaboration": "Collaborazione",
+      "hi": "Solo un saluto"
+    },
+    "nameLabel": "Nome",
+    "namePlaceholder": "Il tuo nome",
+    "emailFieldLabel": "Email",
+    "emailPlaceholder": "tu@esempio.com",
+    "messageLabel": "Messaggio",
+    "messagePlaceholder": "Parlami del tuo progetto o del ruolo...",
+    "send": "Invia messaggio",
+    "sending": "Invio in corso...",
+    "successTitle": "Messaggio inviato. Grazie, ti risponderò al più presto.",
+    "sendAnother": "Invia un altro messaggio",
+    "errorMessage": "Qualcosa è andato storto. Riprova o scrivimi direttamente via email.",
+    "retry": "Riprova",
+    "errors": {
+      "nameRequired": "Per favore inserisci il tuo nome.",
+      "emailRequired": "Per favore inserisci la tua email.",
+      "emailInvalid": "Per favore inserisci un indirizzo email valido.",
+      "messageRequired": "Per favore inserisci un messaggio.",
+      "messageMin": "Il messaggio deve contenere almeno 10 caratteri."
+    }
+  },
+  "footer": {
+    "tagline": "Senior Full-Stack .NET Developer che realizza software scalabile e cloud-ready.",
+    "navigate": "Naviga",
+    "connect": "Connettiti",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "downloadCv": "Scarica CV",
+    "copyright": "© 2026 Mohamed Mousa. Progettato e sviluppato da me.",
+    "backToTop": "Torna su"
+  }
+}
+

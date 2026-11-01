@@ -1,36 +1,37 @@
 import { Github, Linkedin, Mail, ArrowUp, ArrowUpRight, Download, Code2 } from 'lucide-react';
 import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
+import { useTranslation } from '@/i18n';
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { labelKey: 'nav.home', href: '#home' },
+  { labelKey: 'nav.about', href: '#about' },
+  { labelKey: 'nav.projects', href: '#projects' },
+  { labelKey: 'nav.skills', href: '#skills' },
+  { labelKey: 'nav.contact', href: '#contact' },
 ];
 
 const connectLinks = [
   {
     icon: Github,
-    label: 'GitHub',
+    labelKey: 'footer.github',
     href: 'https://github.com/mohamedmousa77',
     external: true,
   },
   {
     icon: Linkedin,
-    label: 'LinkedIn',
+    labelKey: 'footer.linkedin',
     href: 'https://www.linkedin.com/in/mohamedmousa-',
     external: true,
   },
   {
     icon: Mail,
-    label: 'Email',
+    labelKey: 'footer.email',
     href: 'mailto:mohamed.mousa.contact@gmail.com',
     external: false,
   },
   {
     icon: Download,
-    label: 'Download CV',
+    labelKey: 'footer.downloadCv',
     href: cvFile,
     download: 'Mohamed_Mousa_CV.pdf',
     external: false,
@@ -38,6 +39,7 @@ const connectLinks = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const handleSmoothNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -70,14 +72,14 @@ export default function Footer() {
               </span>
             </a>
             <p className="text-[15px] md:text-[16px] text-[#CBD5E1] leading-relaxed max-w-sm">
-              Senior Full-Stack .NET Developer building scalable, cloud-ready software.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Navigate — spans 3 */}
           <div className="md:col-span-3">
             <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8] mb-4">
-              Navigate
+              {t('footer.navigate')}
             </h3>
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
@@ -87,7 +89,7 @@ export default function Footer() {
                     onClick={(e) => handleSmoothNav(e, link.href)}
                     className="group relative inline-flex items-center text-[16px] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors duration-200 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                   >
-                    <span>{link.label}</span>
+                    <span>{t(link.labelKey)}</span>
                     <span
                       aria-hidden="true"
                       className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#38BDF8] transition-all duration-200 group-hover:w-full"
@@ -101,11 +103,11 @@ export default function Footer() {
           {/* Connect — spans 4 */}
           <div className="md:col-span-4">
             <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8] mb-4">
-              Connect
+              {t('footer.connect')}
             </h3>
             <ul className="space-y-2.5">
               {connectLinks.map((item) => (
-                <li key={item.label}>
+                <li key={item.labelKey}>
                   <a
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
@@ -118,7 +120,7 @@ export default function Footer() {
                       aria-hidden="true"
                     />
                     <span className="relative">
-                      {item.label}
+                      {t(item.labelKey)}
                       <span
                         aria-hidden="true"
                         className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#38BDF8] transition-all duration-200 group-hover:w-full"
@@ -138,14 +140,14 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 pb-6">
           <p className="text-[14px] text-[#94A3B8]">
-            © 2026 Mohamed Mousa. Designed &amp; built by me.
+            {t('footer.copyright')}
           </p>
           <button
             type="button"
             onClick={scrollTop}
             className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[#CBD5E1] hover:text-[#38BDF8] rounded-lg px-2 py-1 transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
-            <span>Back to top</span>
+            <span>{t('footer.backToTop')}</span>
             <span
               aria-hidden="true"
               className="h-8 w-8 rounded-lg border border-[rgba(255,255,255,0.10)] bg-white/[0.04] flex items-center justify-center group-hover:border-[#38BDF8]/40 [@media(hover:hover)]:group-hover:-translate-y-0.5 transition-all duration-200"

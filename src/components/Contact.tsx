@@ -16,17 +16,18 @@ import {
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
+import { useTranslation } from '@/i18n';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
 const topics = [
-  'Job opportunity',
-  'Freelance project',
-  'Collaboration',
-  'Just saying hi',
+  { id: 'job', labelKey: 'contact.topics.job', value: 'Job opportunity' },
+  { id: 'freelance', labelKey: 'contact.topics.freelance', value: 'Freelance project' },
+  { id: 'collaboration', labelKey: 'contact.topics.collaboration', value: 'Collaboration' },
+  { id: 'hi', labelKey: 'contact.topics.hi', value: 'Just saying hi' },
 ] as const;
 
-type Topic = (typeof topics)[number];
+type TopicValue = (typeof topics)[number]['value'];
 
 interface FormState {
   name: string;
@@ -57,8 +58,9 @@ function formatRomeTime(): string {
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' });
-  const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<TopicValue | null>(null);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>('idle');
   const [copied, setCopied] = useState(false);
@@ -119,18 +121,18 @@ export default function Contact() {
 
     if (nextIndex !== null) {
       topicRefs.current[nextIndex]?.focus();
-      setSelectedTopic(topics[nextIndex]);
+      setSelectedTopic(topics[nextIndex].value);
     }
   };
 
   const validate = (): boolean => {
     const next: Errors = {};
-    if (!form.name.trim()) next.name = 'Please enter your name.';
-    if (!form.email.trim()) next.email = 'Please enter your email.';
-    else if (!emailRegex.test(form.email)) next.email = 'Please enter a valid email address.';
-    if (!form.message.trim()) next.message = 'Please enter a message.';
+    if (!form.name.trim()) next.name = t('contact.errors.nameRequired');
+    if (!form.email.trim()) next.email = t('contact.errors.emailRequired');
+    else if (!emailRegex.test(form.email)) next.email = t('contact.errors.emailInvalid');
+    if (!form.message.trim()) next.message = t('contact.errors.messageRequired');
     else if (form.message.trim().length < 10)
-      next.message = 'Message should be at least 10 characters.';
+      next.message = t('contact.errors.messageMin');
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -184,14 +186,16 @@ export default function Contact() {
         {/* Left — info */}
         <div className="flex flex-col justify-between reveal">
           <div>
-            <span className="section-eyebrow">04 — CONTACT</span>
+            <span className="section-eyebrow">{t('contact.eyebrow')}</span>
             <h2 className="mt-3 text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC]">
-              Let's build something that{' '}
-              <span className="gradient-text animate-gradient-shift">lasts</span>.
+              {t('contact.titlePrefix')}{' '}
+              <span className="gradient-text animate-gradient-shift">
+                {t('contact.titleHighlight')}
+              </span>
+              .
             </h2>
             <p className="mt-4 text-[16px] md:text-[18px] text-[#CBD5E1] leading-[1.6] max-w-xl">
-              Open to full-time roles, freelance projects and collaborations. Tell me what you're
-              building and I'll get back to you as soon as possible.
+              {t('contact.subtitle')}
             </p>
 
             {/* Availability pill */}
@@ -200,7 +204,7 @@ export default function Contact() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#34D399] animate-emerald-pulse" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#34D399]" />
               </span>
-              Available for new opportunities
+              {t('contact.availability')}
             </div>
 
             {/* Contact Cards */}
@@ -221,7 +225,7 @@ export default function Contact() {
                     <Github className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
                   <div>
-                    <div className="text-sm text-[#94A3B8]">GitHub</div>
+                    <div className="text-sm text-[#94A3B8]">{t('contact.githubLabel')}</div>
                     <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors">
                       @mohamedmousa77
                     </div>
@@ -249,7 +253,7 @@ export default function Contact() {
                     <Linkedin className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
                   <div>
-                    <div className="text-sm text-[#94A3B8]">LinkedIn</div>
+                    <div className="text-sm text-[#94A3B8]">{t('contact.linkedinLabel')}</div>
                     <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors">
                       Mohamed Mousa
                     </div>
@@ -277,7 +281,7 @@ export default function Contact() {
                     <Mail className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-sm text-[#94A3B8]">Email</div>
+                    <div className="text-sm text-[#94A3B8]">{t('contact.emailLabel')}</div>
                     <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors truncate">
                       {EMAIL_ADDRESS}
                     </div>
@@ -291,12 +295,12 @@ export default function Contact() {
                       copied ? 'opacity-100' : 'opacity-0 sr-only'
                     }`}
                   >
-                    {copied ? 'Copied!' : ''}
+                    {copied ? t('contact.copied') : ''}
                   </span>
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    aria-label="Copy email address to clipboard"
+                    aria-label={t('contact.copyEmailAria')}
                     className="h-9 w-9 rounded-lg border border-[rgba(255,255,255,0.10)] bg-white/[0.04] flex items-center justify-center text-[#CBD5E1] hover:text-[#38BDF8] hover:border-[#38BDF8]/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
                   >
                     {copied ? (
@@ -313,11 +317,11 @@ export default function Contact() {
           {/* Bottom left meta row + Download CV button */}
           <div className="mt-8 pt-6 border-t border-[rgba(255,255,255,0.08)] space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-[#94A3B8]">
-              <span>Puglia, Italy · Italian · English · Arabic</span>
+              <span>{t('contact.metaLocation')}</span>
               {localTime && (
                 <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[#CBD5E1]">
                   <Clock className="h-3.5 w-3.5 text-[#38BDF8]" aria-hidden="true" />
-                  {localTime} local time
+                  {localTime} {t('contact.localTimeSuffix')}
                 </span>
               )}
             </div>
@@ -329,7 +333,7 @@ export default function Contact() {
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
                 <Download className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
-                Download CV
+                {t('contact.downloadCv')}
               </a>
             </div>
           </div>
@@ -350,7 +354,7 @@ export default function Contact() {
                 <CheckCircle2 className="h-8 w-8 text-[#34D399]" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-semibold text-[#F8FAFC] mb-2">
-                Message sent. Thanks, I'll get back to you soon.
+                {t('contact.successTitle')}
               </h3>
               <button
                 type="button"
@@ -358,7 +362,7 @@ export default function Contact() {
                 className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-[#38BDF8] hover:text-white hover:bg-white/[0.05] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
               >
                 <RotateCcw className="h-4 w-4" aria-hidden="true" />
-                Send another message
+                {t('contact.sendAnother')}
               </button>
             </div>
           ) : (
@@ -374,7 +378,7 @@ export default function Contact() {
                   id="topic-group-label"
                   className="block text-sm font-medium text-[#CBD5E1] mb-2.5"
                 >
-                  What's this about?
+                  {t('contact.topicLabel')}
                 </span>
                 <div
                   role="radiogroup"
@@ -382,12 +386,12 @@ export default function Contact() {
                   className="flex flex-wrap gap-2"
                 >
                   {topics.map((topic, idx) => {
-                    const isSelected = selectedTopic === topic;
+                    const isSelected = selectedTopic === topic.value;
                     const isTabStop =
                       selectedTopic === null ? idx === 0 : isSelected;
                     return (
                       <button
-                        key={topic}
+                        key={topic.id}
                         ref={(el) => {
                           topicRefs.current[idx] = el;
                         }}
@@ -396,7 +400,7 @@ export default function Contact() {
                         aria-checked={isSelected}
                         tabIndex={isTabStop ? 0 : -1}
                         onClick={() =>
-                          setSelectedTopic((prev) => (prev === topic ? null : topic))
+                          setSelectedTopic((prev) => (prev === topic.value ? null : topic.value))
                         }
                         onKeyDown={(e) => handleTopicKeyDown(e, idx)}
                         className={`px-3 py-1.5 rounded-[10px] text-[13px] font-mono transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow ${
@@ -405,7 +409,7 @@ export default function Contact() {
                             : 'bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-[#CBD5E1] hover:border-[rgba(255,255,255,0.22)] hover:text-[#F8FAFC]'
                         }`}
                       >
-                        {topic}
+                        {t(topic.labelKey)}
                       </button>
                     );
                   })}
@@ -415,14 +419,14 @@ export default function Contact() {
               {/* Name */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[#CBD5E1] mb-2">
-                  Name
+                  {t('contact.nameLabel')}
                 </label>
                 <input
                   id="name"
                   type="text"
                   value={form.name}
                   onChange={handleChange('name')}
-                  placeholder="Your name"
+                  placeholder={t('contact.namePlaceholder')}
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? 'name-error' : undefined}
                   className={`${inputBase} ${
@@ -446,14 +450,14 @@ export default function Contact() {
               {/* Email */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-[#CBD5E1] mb-2">
-                  Email
+                  {t('contact.emailFieldLabel')}
                 </label>
                 <input
                   id="email"
                   type="email"
                   value={form.email}
                   onChange={handleChange('email')}
-                  placeholder="you@example.com"
+                  placeholder={t('contact.emailPlaceholder')}
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'email-error' : undefined}
                   className={`${inputBase} ${
@@ -477,14 +481,14 @@ export default function Contact() {
               {/* Message */}
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-[#CBD5E1] mb-2">
-                  Message
+                  {t('contact.messageLabel')}
                 </label>
                 <textarea
                   id="message"
                   rows={5}
                   value={form.message}
                   onChange={handleChange('message')}
-                  placeholder="Tell me about your project or the role..."
+                  placeholder={t('contact.messagePlaceholder')}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? 'message-error' : undefined}
                   className={`${inputBase} resize-none ${
@@ -513,13 +517,13 @@ export default function Contact() {
                 >
                   <span className="flex items-center gap-2">
                     <AlertCircle className="h-5 w-5 shrink-0 text-red-400" aria-hidden="true" />
-                    Something went wrong. Please try again or email me directly.
+                    {t('contact.errorMessage')}
                   </span>
                   <button
                     type="submit"
                     className="px-3 py-1 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-white font-semibold text-xs transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                   >
-                    Retry
+                    {t('contact.retry')}
                   </button>
                 </div>
               )}
@@ -533,12 +537,12 @@ export default function Contact() {
                 {status === 'loading' ? (
                   <>
                     <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
-                    Sending...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
                     <Send className="h-5 w-5" aria-hidden="true" />
-                    Send message
+                    {t('contact.send')}
                   </>
                 )}
               </button>
