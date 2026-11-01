@@ -8,7 +8,9 @@
     "contact": "Contact",
     "letsTalk": "Let's talk",
     "toggleMenu": "Toggle navigation menu",
-    "switchLangAria": "Switch language to Italian"
+    "switchLangAria": "Switch language to Italian",
+    "switchToLightAria": "Switch to light mode",
+    "switchToDarkAria": "Switch to dark mode"
   },
   "hero": {
     "badge": "Available for new opportunities · Italy & Remote",
@@ -238,4 +240,3 @@
     "backToTop": "Back to top"
   }
 }
-

@@ -7,24 +7,27 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { useReveal } from '@/hooks/useReveal';
 import { LanguageProvider } from '@/i18n';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 function App() {
   useReveal();
 
   return (
-    <LanguageProvider>
-      <div className="relative min-h-screen bg-ink-950">
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Skills />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="relative min-h-screen bg-ink-950 transition-colors duration-300">
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Projects />
+            <Skills />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

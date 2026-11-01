@@ -8,7 +8,9 @@
     "contact": "Contatti",
     "letsTalk": "Parliamone",
     "toggleMenu": "Apri o chiudi il menu di navigazione",
-    "switchLangAria": "Cambia lingua in Inglese"
+    "switchLangAria": "Cambia lingua in Inglese",
+    "switchToLightAria": "Passa al tema chiaro",
+    "switchToDarkAria": "Passa al tema scuro"
   },
   "hero": {
     "badge": "Disponibile per nuove opportunità · Italia & Remoto",
@@ -238,4 +240,3 @@
     "backToTop": "Torna su"
   }
 }
-

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Code2, Languages } from 'lucide-react';
+import { Menu, X, Code2, Languages, Sun, Moon } from 'lucide-react';
 import { useTranslation } from '@/i18n';
+import { useTheme } from '@/context/ThemeContext';
 
 const links = [
   { labelKey: 'nav.home', href: '#home', id: 'home' },
@@ -12,6 +13,7 @@ const links = [
 
 export default function Navbar() {
   const { lang, toggleLang, t } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState('home');
@@ -105,6 +107,20 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <button
             type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? t('nav.switchToLightAria') : t('nav.switchToDarkAria')}
+            title={theme === 'dark' ? t('nav.switchToLightAria') : t('nav.switchToDarkAria')}
+            className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[rgba(255,255,255,0.12)] bg-white/[0.04] text-slate-300 hover:text-white hover:border-cyan/40 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+          >
+            {theme === 'dark' ? (
+              <Sun className="h-4 w-4 text-[#38BDF8] transition-transform duration-200 hover:rotate-12" aria-hidden="true" />
+            ) : (
+              <Moon className="h-4 w-4 text-[#0284C7] transition-transform duration-200 hover:-rotate-12" aria-hidden="true" />
+            )}
+          </button>
+
+          <button
+            type="button"
             onClick={toggleLang}
             aria-label={t('nav.switchLangAria')}
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[rgba(255,255,255,0.12)] bg-white/[0.04] text-xs font-mono font-semibold text-slate-300 hover:text-white hover:border-cyan/40 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
@@ -128,6 +144,19 @@ export default function Navbar() {
         </div>
 
         <div className="flex md:hidden items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? t('nav.switchToLightAria') : t('nav.switchToDarkAria')}
+            className="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-[rgba(255,255,255,0.12)] bg-white/[0.04] text-slate-200 hover:text-white hover:border-cyan/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
+          >
+            {theme === 'dark' ? (
+              <Sun className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
+            ) : (
+              <Moon className="h-4 w-4 text-[#0284C7]" aria-hidden="true" />
+            )}
+          </button>
+
           <button
             type="button"
             onClick={toggleLang}

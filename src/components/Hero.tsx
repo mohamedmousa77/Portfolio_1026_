@@ -1,5 +1,5 @@
 import { ArrowDown, Download, FolderGit2, Mail, Sparkles } from 'lucide-react';
-import personalImg from '../../assets/Personal.jpg';
+import personalImg from '../../assets/personal.png';
 import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
 import { useTranslation } from '@/i18n';
 
