@@ -9,9 +9,220 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import { projects, type ProjectCategory } from '@/data/projects';
+import {
+  projects,
+  featuredProject,
+  type ProjectCategory,
+  type FeaturedProject,
+  type FeaturedProjectImage,
+} from '@/data/projects';
 
 type Filter = 'All' | ProjectCategory;
+
+function BrowserFrame({
+  image,
+  className = '',
+}: {
+  image: FeaturedProjectImage;
+  className?: string;
+}) {
+  const [imgError, setImgError] = useState(false);
+  const showImage = Boolean(image.src) && !imgError;
+
+  return (
+    <div
+      className={`rounded-[14px] border border-[rgba(255,255,255,0.10)] bg-[#111827] shadow-[0_30px_60px_rgba(0,0,0,0.5)] overflow-hidden transition-[transform,box-shadow] duration-300 ease-out ${className}`}
+    >
+      {/* Slim dark title bar */}
+      <div
+        aria-hidden="true"
+        className="h-[28px] bg-[#111827] border-b border-[rgba(255,255,255,0.06)] px-3 flex items-center gap-1.5"
+      >
+        <span className="h-2 w-2 rounded-full bg-[rgba(255,255,255,0.2)]" />
+        <span className="h-2 w-2 rounded-full bg-[rgba(255,255,255,0.2)]" />
+        <span className="h-2 w-2 rounded-full bg-[rgba(255,255,255,0.2)]" />
+      </div>
+
+      {/* Screenshot or neutral placeholder */}
+      <div className="relative aspect-[16/10] w-full bg-[#0d1322] overflow-hidden">
+        {showImage ? (
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={800}
+            height={500}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImgError(true)}
+            className="h-full w-full object-cover object-left-top"
+          />
+        ) : (
+          // TODO: Add audio-store-storefront.png and audio-store-admin.png to the /assets/ folder
+          <div
+            role="img"
+            aria-label={image.alt}
+            className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#111827] via-[#0e1525] to-[#0B0F1A] p-4 text-center"
+          >
+            <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-40" />
+            <span className="relative z-10 font-mono text-xs uppercase tracking-widest text-[#94A3B8]">
+              {image.caption}
+            </span>
+          </div>
+        )}
+
+        {/* Bottom-left caption pill */}
+        <span className="absolute bottom-2.5 left-2.5 z-10 px-2.5 py-1 rounded-full text-[12px] leading-none font-medium text-[#F8FAFC] bg-[rgba(11,15,26,0.8)] backdrop-blur-md border border-[rgba(255,255,255,0.12)]">
+          {image.caption}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
+  const [storefrontImg, adminImg] = project.images;
+
+  return (
+    <div className="mb-16">
+      <div className="mb-4 reveal">
+        <span className="font-mono text-[13px] uppercase tracking-[0.15em] text-[#38BDF8]">
+          FEATURED PROJECT
+        </span>
+      </div>
+
+      <article
+        aria-labelledby="featured-project-title"
+        className="relative w-full rounded-[28px] border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] p-6 lg:p-10 overflow-hidden reveal reveal-featured"
+      >
+        {/* Soft radial cyan glow at top-right */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.10)_0%,transparent_70%)]"
+        />
+
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10">
+          {/* Image composition — top on <1024px, right column (~55%) on >=1024px */}
+          <div className="w-full lg:w-[55%] order-1 lg:order-2">
+            <div className="featured-mockup-group relative w-full pb-[14%]">
+              {/* Storefront base frame (88% width so the offset admin frame fits within 100% column width) */}
+              <div className="w-[88%]">
+                <BrowserFrame image={storefrontImg} className="mockup-frame-base" />
+              </div>
+
+              {/* Admin panel overlapping frame (~78% of base = ~68.6% width, offset ~12% horizontally & ~14% vertically) */}
+              <div className="reveal-admin-frame absolute bottom-0 right-0 w-[68.6%] z-10">
+                <BrowserFrame image={adminImg} className="mockup-frame-overlay" />
+              </div>
+            </div>
+          </div>
+
+          {/* Text column — bottom on <1024px, left column (~45%) on >=1024px */}
+          <div className="w-full lg:w-[45%] order-2 lg:order-1 flex flex-col items-start">
+            {/* Badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {project.badges.map((b) =>
+                b.variant === 'featured' ? (
+                  <span
+                    key={b.label}
+                    className="px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950"
+                  >
+                    {b.label}
+                  </span>
+                ) : (
+                  <span
+                    key={b.label}
+                    className="px-3 py-1 rounded-full text-xs font-semibold bg-ink-950/75 backdrop-blur border border-[rgba(255,255,255,0.10)] text-[#38BDF8]"
+                  >
+                    {b.label}
+                  </span>
+                ),
+              )}
+            </div>
+
+            {/* Title */}
+            <h3
+              id="featured-project-title"
+              className="text-[28px] md:text-[32px] lg:text-[36px] font-bold tracking-[-0.02em] leading-tight text-[#F8FAFC] mb-4"
+            >
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-[16px] md:text-[17px] leading-[1.65] text-[#CBD5E1] mb-6">
+              {project.description}
+            </p>
+
+            {/* Metrics row */}
+            <ul className="w-full grid grid-cols-2 sm:grid-cols-3 gap-y-4 py-4 mb-6 border-y border-[rgba(255,255,255,0.08)]">
+              {project.metrics.map((m, idx) => (
+                <li
+                  key={m.label}
+                  className={`${
+                    idx === 1
+                      ? 'border-l border-[rgba(255,255,255,0.08)] pl-4 sm:px-4'
+                      : idx === 2
+                        ? 'col-span-2 sm:col-span-1 sm:border-l sm:border-[rgba(255,255,255,0.08)] sm:pl-4 pt-3 sm:pt-0 border-t sm:border-t-0 border-[rgba(255,255,255,0.08)]'
+                        : 'pr-4'
+                  }`}
+                >
+                  <div className="text-[24px] md:text-[28px] font-bold leading-tight metric-gradient">
+                    {m.value}
+                  </div>
+                  <div className="text-[13px] text-[#94A3B8] mt-0.5">{m.label}</div>
+                </li>
+              ))}
+            </ul>
+
+            {/* Tags */}
+            <ul className="flex flex-wrap gap-2 mb-7">
+              {project.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="px-2.5 py-1 rounded-[12px] text-[12px] md:text-[13px] font-mono bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-[#CBD5E1]"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+
+            {/* Links */}
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href={project.codeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Audio Store source code on GitHub (opens in a new tab)"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/45 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              >
+                <Github className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
+                <span>View code</span>
+              </a>
+
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/45 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                >
+                  <ExternalLink className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
+                  <span>Live demo</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* "More projects" divider with 64px spacing above and below */}
+      <div className="mt-16 mb-16 flex items-center gap-4 reveal" aria-hidden="true">
+        <div className="h-px flex-1 bg-[rgba(255,255,255,0.08)]" />
+        <span className="text-[13px] text-[#94A3B8] font-medium">More projects</span>
+        <div className="h-px flex-1 bg-[rgba(255,255,255,0.08)]" />
+      </div>
+    </div>
+  );
+}
 
 const filterOptions: { value: Filter; label: string; icon: typeof LayoutGrid }[] = [
   { value: 'All', label: 'All', icon: LayoutGrid },
@@ -199,6 +410,9 @@ export default function Projects() {
             Selected work. Client projects under NDA are not shown.
           </p>
         </div>
+
+        {/* Featured Project Block (always visible, outside filter & grid) */}
+        <FeaturedProjectCard project={featuredProject} />
 
         {/* Segmented Filter Control */}
         <div className="flex flex-col items-center mb-12 reveal">

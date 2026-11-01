@@ -112,6 +112,42 @@
   transform: translateY(0);
 }
 
+.reveal-featured {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.reveal.is-visible.reveal-featured,
+.reveal.is-visible .reveal-featured,
+.reveal-featured.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-admin-frame {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms ease-out 120ms, transform 400ms ease-out 120ms;
+}
+
+.reveal.is-visible .reveal-admin-frame {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .featured-mockup-group:hover .mockup-frame-base {
+    transform: translate(-4px, -4px);
+    box-shadow: 0 38px 72px rgba(0, 0, 0, 0.65);
+  }
+
+  .featured-mockup-group:hover .mockup-frame-overlay {
+    transform: translate(4px, 4px);
+    box-shadow: 0 38px 72px rgba(0, 0, 0, 0.7);
+  }
+}
+
 @keyframes chevronBounce4 {
   0%, 100% {
     transform: translateY(0);
@@ -221,6 +257,8 @@
 
   .reveal,
   .reveal-strip,
+  .reveal-featured,
+  .reveal-admin-frame,
   .animate-card-enter,
   .card-outgoing,
   .animate-chevron-bounce,

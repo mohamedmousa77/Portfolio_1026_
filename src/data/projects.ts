@@ -20,6 +20,74 @@ export interface Project {
   image?: string;
 }
 
+export interface FeaturedProjectMetric {
+  value: string;
+  label: string;
+}
+
+export interface FeaturedProjectImage {
+  src?: string;
+  alt: string;
+  caption: string;
+}
+
+export interface FeaturedProject {
+  title: string;
+  description: string;
+  badges: { label: string; variant: 'featured' | 'category' }[];
+  metrics: FeaturedProjectMetric[];
+  tags: string[];
+  images: [FeaturedProjectImage, FeaturedProjectImage];
+  codeUrl: string;
+  liveUrl?: string;
+}
+
+// Automatically resolves audio-store-storefront.png and audio-store-admin.png from /assets/
+// when added, without failing the Vite build if the files are not placed in /assets/ yet.
+// TODO: Place audio-store-storefront.png and audio-store-admin.png in the root /assets/ folder.
+const assetImages = import.meta.glob<string>('../../assets/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+  import: 'default',
+});
+
+export const featuredProject: FeaturedProject = {
+  title: 'Audio Store: Enterprise E-Commerce Platform',
+  description:
+    'A production-ready e-commerce platform built end-to-end during my internship at Exprivia: a customer storefront plus an admin panel for sales analytics, order tracking and promo codes. Built on 4-layer Clean Architecture with DDD, 50+ JWT-secured REST endpoints and an Angular SPA with NgRx and 8 lazy-loaded modules.',
+  badges: [
+    { label: 'Featured', variant: 'featured' },
+    { label: 'Web', variant: 'category' },
+  ],
+  metrics: [
+    { value: '50+', label: 'REST endpoints' },
+    { value: '<200 ms', label: 'avg API response' },
+    { value: '70%+', label: 'test coverage' },
+  ],
+  tags: [
+    'ASP.NET Core',
+    'Angular',
+    'SQL Server',
+    'EF Core',
+    'NgRx',
+    'Docker',
+    'GitHub Actions',
+    'xUnit',
+  ],
+  images: [
+    {
+      src: assetImages['../../assets/audio-store-storefront.png'],
+      alt: 'Audio Store storefront home page with a featured headphone product',
+      caption: 'Storefront',
+    },
+    {
+      src: assetImages['../../assets/audio-store-admin.png'],
+      alt: 'Audio Store admin dashboard with sales totals, orders by status and sales by category',
+      caption: 'Admin panel',
+    },
+  ],
+  codeUrl: 'https://github.com/mohamedmousa77/Audio-Store',
+};
+
 export const projects: Project[] = [
   {
     id: 1,
