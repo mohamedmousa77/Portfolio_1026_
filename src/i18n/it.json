@@ -16,22 +16,23 @@
     "badge": "Disponibile per nuove opportunità · Italia & Remoto",
     "firstName": "Mohamed",
     "lastName": "Mousa",
-    "subtitle": "Senior Full-Stack .NET Developer",
+    "subtitle": "Senior Full-\u2060Stack .NET Developer",
     "descStart": "Progetto e sviluppo software enterprise scalabile con ",
     "descAnd": " e ",
     "descEnd": ", dal database al deployment, per web e mobile.",
-    "exploreProjects": "Esplora i Progetti",
+    "exploreProjects": "Esplora i progetti",
     "getInTouch": "Contattami",
     "downloadCv": "Scarica CV",
     "meta": "Puglia, Italia · Italiano · Inglese · Arabo",
-    "portraitAlt": "Ritratto di Mohamed Mousa, Senior Full-Stack .NET Developer",
+    "portraitAlt": "Ritratto di Mohamed Mousa, Senior Full-\u2060Stack .NET Developer",
     "scrollAria": "Scorri verso la sezione Chi sono",
     "scroll": "Scorri"
   },
   "about": {
     "eyebrow": "01 — Chi sono",
-    "title": "Ingegnerizzare software che dura nel tempo",
-    "intro": "Sono uno sviluppatore Senior Full-Stack .NET che realizza applicazioni enterprise progettate per sostenere la crescita, non solo il lancio. Seguo l'intero ciclo di sviluppo, dallo schema SQL Server alla UI in Angular fino al deployment su Azure, adottando Clean Architecture, DDD e CQRS affinché il codice resti leggibile e testabile al crescere del team e dei requisiti. Lavoro in italiano, inglese e arabo e ho consegnato progetti per clienti in Italia, Emirati Arabi Uniti e Stati Uniti.",
+    "title": "Software progettato per durare",
+    "intro1": "Sono uno sviluppatore Senior Full-\u2060Stack .NET che realizza applicazioni enterprise progettate per sostenere la crescita, non solo il lancio.",
+    "intro2": "Seguo l'intero ciclo di sviluppo, dallo schema SQL Server alla UI in Angular fino al deployment su Azure, adottando Clean Architecture, DDD e CQRS affinché il codice resti leggibile e testabile al crescere del team e dei requisiti. Lavoro in italiano, inglese e arabo e ho consegnato progetti per clienti in Italia, Emirati Arabi Uniti e Stati Uniti.",
     "stats": {
       "yearsValue": "5+",
       "yearsLabel": "Anni di esperienza",
@@ -40,12 +41,12 @@
       "mobileValue": "10+",
       "mobileLabel": "App Mobile",
       "cleanValue": "Clean",
-      "cleanLabel": "Architecture First"
+      "cleanLabel": "Prima l'architettura"
     },
     "pillars": {
       "p1Title": "Architettura Enterprise",
       "p1Desc": "Clean Architecture, DDD e CQRS conferiscono a ogni sistema confini chiari e layer testabili, mantenendolo manutenibile nel tempo.",
-      "p2Title": "Ownership Full-Stack",
+      "p2Title": "Full-\u2060Stack end-\u2060to-\u2060end",
       "p2Desc": "Dagli schemi SQL Server e le API .NET ai frontend Angular e alle app mobile in Flutter, realizzo l'intero stack con un linguaggio coerente.",
       "p3Title": "Cloud & Qualità",
       "p3Desc": "Servizi containerizzati con Docker, CI/CD su Azure DevOps e GitHub Actions, oltre il 70% di copertura unit test e controlli SonarQube, per garantire prestazioni e affidabilità fin dall'inizio."
@@ -54,13 +55,13 @@
       "heading": "Risultati chiave",
       "h1Metric": "50+",
       "h1Label": "Endpoint REST",
-      "h1Context": "Risposta media <200 ms, piattaforma e-commerce",
+      "h1Context": "Risposta media <200 ms, piattaforma e-\u2060commerce",
       "h2Metric": "70%+",
       "h2Label": "Copertura unit test",
       "h2Context": "xUnit + Moq, SonarQube",
       "h3Metric": "~35%",
       "h3Label": "Query più veloci",
-      "h3Context": "Ottimizzazione indici T-SQL, app finanziaria",
+      "h3Context": "Ottimizzazione indici T-\u2060SQL, app finanziaria",
       "h4Metric": "~40%",
       "h4Label": "Caricamento percepito più rapido",
       "h4Context": "Lazy-loading Angular, 8 moduli",
@@ -74,18 +75,18 @@
   "projects": {
     "eyebrow": "02 — Progetti",
     "title": "Cose che ho costruito",
-    "subtitle": "Una selezione di applicazioni web e mobile che ho progettato e sviluppato end-to-end.",
+    "subtitle": "Una selezione di applicazioni web e mobile che ho progettato e sviluppato end-\u2060to-\u2060end.",
     "ndaNote": "Lavori selezionati. I progetti per clienti coperti da NDA non sono mostrati.",
     "featuredLabel": "PROGETTO IN EVIDENZA",
     "featured": {
       "badgeFeatured": "In evidenza",
       "badgeWeb": "Web",
-      "title": "Audio Store: Piattaforma E-Commerce Enterprise",
-      "description": "Una piattaforma e-commerce pronta per la produzione sviluppata end-to-end durante il mio tirocinio presso Exprivia: uno storefront per i clienti e un pannello di amministrazione per statistiche di vendita, tracciamento ordini e codici promozionali. Basata su Clean Architecture a 4 livelli con DDD, oltre 50 endpoint REST protetti da JWT e una SPA Angular con NgRx e 8 moduli lazy-loaded.",
+      "title": "Audio Store: Piattaforma E-\u2060Commerce Enterprise",
+      "description": "Una piattaforma e-\u2060commerce pronta per la produzione sviluppata end-\u2060to-\u2060end durante il mio tirocinio presso Exprivia: uno storefront per i clienti e un pannello di amministrazione per statistiche di vendita, tracciamento ordini e codici promozionali. Basata su Clean Architecture a 4 livelli con DDD, oltre 50 endpoint REST protetti da JWT e una SPA Angular con NgRx e 8 moduli lazy-loaded.",
       "m1Value": "50+",
       "m1Label": "endpoint REST",
       "m2Value": "<200 ms",
-      "m2Label": "risposta media API",
+      "m2Label": "risposta API media",
       "m3Value": "70%+",
       "m3Label": "copertura test",
       "viewCode": "Vedi codice",
@@ -116,27 +117,28 @@
     "showLess": "Mostra meno",
     "items": {
       "1": {
-        "title": "App di Finanza Personale",
-        "description": "Un gestore full-stack per le finanze personali che monitora entrate, uscite e budget con dashboard interattive e supporto per le transazioni ricorrenti."
+        "title": "App di finanza personale",
+        "description": "Gestionale di finanza personale full-\u2060stack con dashboard interattive, budget e transazioni ricorrenti.",
+        "result": "200+ utenti attivi al picco"
       },
       "2": {
-        "title": "Morra Cinese (Rock Paper Scissors)",
+        "title": "Morra cinese",
         "description": "Il classico gioco con tracciamento del punteggio, animazioni fluide e un layout responsive pulito giocabile su qualsiasi dispositivo."
       },
       "3": {
-        "title": "Forza 4 (Connect 4)",
-        "description": "Un gioco di strategia per due giocatori con animazioni di caduta, rilevamento della vittoria e un'interfaccia minimalista realizzata in Angular."
+        "title": "Forza 4",
+        "description": "Gioco di strategia per due giocatori con animazioni di caduta, rilevamento della vittoria e interfaccia minimalista in Angular."
       },
       "4": {
-        "title": "Form Multi-Step",
-        "description": "Un wizard multi-step accessibile e animato con validazione lato client, monitoraggio dell'avanzamento e un'interfaccia personalizzata curata."
+        "title": "Form multi-\u2060step",
+        "description": "Un wizard multi-\u2060step accessibile e animato con validazione lato client, monitoraggio dell'avanzamento e un'interfaccia personalizzata curata."
       },
       "5": {
-        "title": "Wafra E-commerce",
-        "description": "Una piattaforma di mobile commerce con catalogo prodotti, carrello, checkout sicuro e storico ordini, basata su un backend REST API."
+        "title": "Wafra e-\u2060commerce",
+        "description": "App di mobile commerce con catalogo, carrello, checkout sicuro e storico ordini, collegata a un backend REST."
       },
       "6": {
-        "title": "Pagina Prodotto E-commerce",
+        "title": "Pagina prodotto e-\u2060commerce",
         "description": "Una pagina di dettaglio prodotto responsive con galleria immagini, selezione varianti, anteprima carrello e markup accessibile."
       },
       "7": {
@@ -182,7 +184,8 @@
       "testing": "Testing & Qualità"
     },
     "skillNames": {
-      "storedProc": "Stored Procedure & Ottimizzazione Query",
+      "storedProcedures": "Stored Procedure",
+      "queryOptimization": "Ottimizzazione query",
       "integrationTesting": "Integration Testing"
     },
     "also": "Inoltre: Flutter · Dart · Firebase · Agile/Scrum · Code Review · Visual Studio · Rider"
@@ -216,6 +219,7 @@
     "messagePlaceholder": "Parlami del tuo progetto o del ruolo...",
     "send": "Invia messaggio",
     "sending": "Invio in corso...",
+    "privacy": "I tuoi dati saranno usati solo per rispondere al tuo messaggio.",
     "successTitle": "Messaggio inviato. Grazie, ti risponderò al più presto.",
     "sendAnother": "Invia un altro messaggio",
     "errorMessage": "Qualcosa è andato storto. Riprova o scrivimi direttamente via email.",
@@ -229,7 +233,7 @@
     }
   },
   "footer": {
-    "tagline": "Senior Full-Stack .NET Developer che realizza software scalabile e cloud-ready.",
+    "tagline": "Senior Full-\u2060Stack .NET Developer che realizza software scalabile e cloud-ready.",
     "navigate": "Naviga",
     "connect": "Connettiti",
     "github": "GitHub",

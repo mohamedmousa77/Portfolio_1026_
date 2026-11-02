@@ -1,5 +1,5 @@
 import { Github, Linkedin, Mail, ArrowUp, ArrowUpRight, Download, Code2 } from 'lucide-react';
-import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
+import { getCvForLang } from '@/config/cv';
 import { useTranslation } from '@/i18n';
 
 const navLinks = [
@@ -10,37 +10,38 @@ const navLinks = [
   { labelKey: 'nav.contact', href: '#contact' },
 ];
 
-const connectLinks = [
-  {
-    icon: Github,
-    labelKey: 'footer.github',
-    href: 'https://github.com/mohamedmousa77',
-    external: true,
-  },
-  {
-    icon: Linkedin,
-    labelKey: 'footer.linkedin',
-    href: 'https://www.linkedin.com/in/mohamedmousa-',
-    external: true,
-  },
-  {
-    icon: Mail,
-    labelKey: 'footer.email',
-    href: 'mailto:mohamed.mousa.contact@gmail.com',
-    external: false,
-  },
-  {
-    icon: Download,
-    labelKey: 'footer.downloadCv',
-    href: cvFile,
-    download: 'Mohamed_Mousa_CV.pdf',
-    external: false,
-  },
-];
-
 export default function Footer() {
-  const { t } = useTranslation();
+  const { lang, t } = useTranslation();
+  const cv = getCvForLang(lang);
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const connectLinks = [
+    {
+      icon: Github,
+      labelKey: 'footer.github',
+      href: 'https://github.com/mohamedmousa77',
+      external: true,
+    },
+    {
+      icon: Linkedin,
+      labelKey: 'footer.linkedin',
+      href: 'https://www.linkedin.com/in/mohamedmousa-',
+      external: true,
+    },
+    {
+      icon: Mail,
+      labelKey: 'footer.email',
+      href: 'mailto:mohamed.mousa.contact@gmail.com',
+      external: false,
+    },
+    {
+      icon: Download,
+      labelKey: 'footer.downloadCv',
+      href: cv.href,
+      download: cv.downloadName,
+      external: false,
+    },
+  ];
 
   const handleSmoothNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -51,7 +52,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden border-t border-[rgba(255,255,255,0.08)] bg-ink-950">
       <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-30 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-16 pb-6">
+      <div className="relative z-10 site-container pt-16 pb-6">
         {/* 12-column grid on desktop: Brand (5), Navigate (3), Connect (4) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[rgba(255,255,255,0.08)]">
           {/* Brand — spans 5 */}
@@ -126,10 +127,12 @@ export default function Footer() {
                         className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#38BDF8] transition-all duration-200 group-hover:w-full"
                       />
                     </span>
-                    <ArrowUpRight
-                      aria-hidden="true"
-                      className="h-3.5 w-3.5 text-[#94A3B8] group-hover:text-[#38BDF8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200"
-                    />
+                    {item.external && (
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="h-3.5 w-3.5 text-[#94A3B8] group-hover:text-[#38BDF8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200"
+                      />
+                    )}
                   </a>
                 </li>
               ))}
@@ -158,12 +161,15 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Signature bottom-cropped wordmark */}
+      {/* 7.3: Signature bottom-cropped wordmark — font-size min(11.5vw, 12rem), white-space nowrap, centered, cropped only at bottom */}
       <div
         aria-hidden="true"
         className="relative z-0 w-full overflow-hidden select-none pointer-events-none flex justify-center pt-2"
       >
-        <span className="footer-wordmark block text-center font-extrabold tracking-[-0.04em] leading-[0.8] md:whitespace-nowrap text-[clamp(3.5rem,13vw,12rem)] translate-y-[18%]">
+        <span
+          style={{ fontSize: 'min(11.5vw, 12rem)' }}
+          className="footer-wordmark block text-center font-extrabold tracking-[-0.04em] leading-[0.8] whitespace-nowrap translate-y-[18%]"
+        >
           Mohamed Mousa
         </span>
       </div>

@@ -1,36 +1,36 @@
 import { ArrowDown, Download, FolderGit2, Mail, Sparkles } from 'lucide-react';
 import personalImg from '../../assets/personal.png';
-import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
+import { getCvForLang } from '@/config/cv';
 import { useTranslation } from '@/i18n';
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { lang, t } = useTranslation();
+  const cv = getCvForLang(lang);
   const scrollTo = (href: string) =>
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-28 pb-8"
+      style={{ scrollMarginTop: '88px' }}
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden pt-28 pb-10"
     >
-      {/* Background layers */}
-      <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-60" />
-      <div aria-hidden="true" className="absolute inset-0 bg-radial-glow" />
-      <div
-        aria-hidden="true"
-        className="absolute top-1/4 -left-32 h-96 w-96 rounded-full bg-electric/20 blur-[120px] animate-glow-pulse"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full bg-cyan/20 blur-[120px] animate-glow-pulse"
-        style={{ animationDelay: '1.5s' }}
-      />
+      {/* Background layers with smooth bottom mask (4.1) */}
+      <div aria-hidden="true" className="absolute inset-0 hero-bg-mask pointer-events-none">
+        <div className="absolute inset-0 bg-grid opacity-60" />
+        <div className="absolute inset-0 bg-radial-glow" />
+        <div className="absolute top-1/4 -left-32 h-96 w-96 rounded-full bg-electric/20 blur-[120px] animate-glow-pulse" />
+        <div
+          className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full bg-cyan/20 blur-[120px] animate-glow-pulse"
+          style={{ animationDelay: '1.5s' }}
+        />
+      </div>
 
-      <div className="relative z-10 flex-1 flex items-center max-w-7xl w-full mx-auto px-6 md:px-12 lg:px-20 py-10">
+      <div className="relative z-10 flex-1 flex items-center site-container py-10">
         <div className="grid lg:grid-cols-12 gap-12 items-center w-full">
           {/* Left column — Name, Title & CTAs */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan/20 bg-cyan/5 text-cyan-glow text-sm font-medium mb-8 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan/25 bg-cyan/5 text-cyan-glow text-sm font-medium mb-8 animate-fade-in">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               {t('hero.badge')}
             </div>
@@ -89,8 +89,8 @@ export default function Hero() {
                 {t('hero.getInTouch')}
               </button>
               <a
-                href={cvFile}
-                download="Mohamed_Mousa_CV.pdf"
+                href={cv.href}
+                download={cv.downloadName}
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-cyan-glow hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
                 <Download className="h-4 w-4 text-cyan-glow" aria-hidden="true" />
@@ -133,7 +133,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — centered inside hero, >=32px above bottom edge (pb-10 on section = 40px) */}
       <div className="relative z-10 flex justify-center mt-4">
         <button
           type="button"

@@ -1,8 +1,8 @@
-import { Layers, Server, Smartphone, Award, FolderGit2, Mail } from 'lucide-react';
+import { Layers, Clock, Smartphone, Award, FolderGit2, Mail } from 'lucide-react';
 import { useTranslation } from '@/i18n';
 
 interface StatItem {
-  icon: typeof Server;
+  icon: typeof Clock;
   valueKey: string;
   labelKey: string;
 }
@@ -20,7 +20,7 @@ interface HighlightItem {
 }
 
 const stats: StatItem[] = [
-  { icon: Server, valueKey: 'about.stats.yearsValue', labelKey: 'about.stats.yearsLabel' },
+  { icon: Clock, valueKey: 'about.stats.yearsValue', labelKey: 'about.stats.yearsLabel' },
   { icon: Layers, valueKey: 'about.stats.projectsValue', labelKey: 'about.stats.projectsLabel' },
   { icon: Smartphone, valueKey: 'about.stats.mobileValue', labelKey: 'about.stats.mobileLabel' },
   { icon: Award, valueKey: 'about.stats.cleanValue', labelKey: 'about.stats.cleanLabel' },
@@ -78,11 +78,11 @@ export default function About() {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="about" className="relative section-padding">
-      <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-40" />
+    <section id="about" className="relative section-block">
+      <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-40 pointer-events-none" />
 
-      <div className="relative z-10">
-        {/* Centered Header Block */}
+      <div className="relative z-10 site-container">
+        {/* Centered Header Block (4.2) */}
         <div className="text-center max-w-[720px] mx-auto mb-16 reveal">
           <span className="section-eyebrow">
             {t('about.eyebrow')}
@@ -90,8 +90,11 @@ export default function About() {
           <h2 className="section-title">
             {t('about.title')}
           </h2>
-          <p className="section-subtitle">
-            {t('about.intro')}
+          <p className="mt-5 text-[20px] md:text-[22px] leading-[1.55] font-medium text-[#F8FAFC] max-w-[720px] mx-auto [text-wrap:pretty]">
+            {t('about.intro1')}
+          </p>
+          <p className="mt-4 text-[17px] md:text-[18px] leading-[1.7] text-[#CBD5E1] max-w-[720px] mx-auto [text-wrap:pretty]">
+            {t('about.intro2')}
           </p>
         </div>
 
@@ -116,32 +119,32 @@ export default function About() {
           ))}
         </div>
 
-        {/* Pillars (equal-height cards with top-aligned content & tech chips at bottom) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+        {/* Pillars (4.3: CSS subgrid across the 3 cards so badge, title, description and chips align) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 md:gap-y-0 pillars-subgrid reveal">
           {pillars.map((p, i) => (
             <div
               key={p.titleKey}
-              className="glass-card p-8 md:p-9 flex flex-col justify-between hover:glow-border hover:-translate-y-0.5 transition-all duration-200"
+              className="pillar-card-subgrid glass-card p-8 md:p-9 flex flex-col hover:glow-border hover:-translate-y-0.5 transition-all duration-200"
               style={{ transitionDelay: `${i * 70}ms` }}
             >
-              <div>
-                <div
-                  aria-hidden="true"
-                  className="h-10 w-10 rounded-lg bg-gradient-to-br from-cyan/20 to-electric/20 border border-cyan/20 flex items-center justify-center mb-5"
-                >
-                  <span className="font-mono text-[#38BDF8] font-bold text-lg">{i + 1}</span>
-                </div>
-                <h3 className="text-[20px] md:text-[22px] font-semibold text-[#F8FAFC] mb-3">
-                  {t(p.titleKey)}
-                </h3>
-                <p className="text-[16px] text-slate-300 leading-[1.6]">{t(p.descriptionKey)}</p>
+              <div
+                aria-hidden="true"
+                className="h-10 w-10 rounded-lg bg-gradient-to-br from-cyan/20 to-electric/20 border border-cyan/20 flex items-center justify-center mb-5"
+              >
+                <span className="font-mono text-[#38BDF8] font-bold text-lg">{i + 1}</span>
               </div>
+
+              <h3 className="text-[20px] md:text-[22px] font-semibold text-[#F8FAFC] mb-3 [text-wrap:balance]">
+                {t(p.titleKey)}
+              </h3>
+
+              <p className="text-[16px] text-slate-300 leading-[1.6]">{t(p.descriptionKey)}</p>
 
               <div className="flex flex-wrap gap-2 pt-6 mt-6 border-t border-[rgba(255,255,255,0.08)]">
                 {p.chips.map((chip) => (
                   <span
                     key={chip}
-                    className="px-2.5 py-1 rounded-md text-xs font-mono text-slate-300 bg-white/[0.03] border border-[rgba(255,255,255,0.08)]"
+                    className="px-2.5 py-1 rounded-md text-xs font-mono chip-normal"
                   >
                     {chip}
                   </span>
@@ -160,7 +163,7 @@ export default function About() {
             {t('about.highlights.heading')}
           </h3>
 
-          <div className="w-full rounded-[20px] border border-[rgba(255,255,255,0.08)] bg-white/[0.02] p-8">
+          <div className="w-full rounded-[20px] surface-card p-8">
             <ul className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-5 sm:gap-6 lg:gap-0">
               {highlights.map((item, idx) => {
                 const tabletSpan =

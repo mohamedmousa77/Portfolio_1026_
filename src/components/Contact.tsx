@@ -15,7 +15,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
-import cvFile from '../../assets/Mohamed_Mousa_CV.pdf';
+import { getCvForLang } from '@/config/cv';
 import { useTranslation } from '@/i18n';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
@@ -58,7 +58,8 @@ function formatRomeTime(): string {
 }
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { lang, t } = useTranslation();
+  const cv = getCvForLang(lang);
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' });
   const [selectedTopic, setSelectedTopic] = useState<TopicValue | null>(null);
   const [errors, setErrors] = useState<Errors>({});
@@ -173,7 +174,7 @@ export default function Contact() {
     'w-full px-4 py-3 text-[16px] rounded-[12px] bg-ink-900/80 border text-[#F8FAFC] placeholder-slate-500 transition-all duration-200 focus:outline-none';
 
   return (
-    <section id="contact" className="relative overflow-hidden py-16 md:py-[108px]">
+    <section id="contact" className="relative overflow-hidden section-block">
       {/* Hero-consistent background treatment */}
       <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
       <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-60 pointer-events-none" />
@@ -182,12 +183,12 @@ export default function Contact() {
         className="absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[500px] rounded-full bg-electric/10 blur-[120px] pointer-events-none"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-12 lg:items-stretch">
+      <div className="relative z-10 site-container grid lg:grid-cols-2 gap-12 lg:items-stretch">
         {/* Left — info */}
         <div className="flex flex-col justify-between reveal">
           <div>
             <span className="section-eyebrow">{t('contact.eyebrow')}</span>
-            <h2 className="mt-3 text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC]">
+            <h2 className="mt-3 text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC] [text-wrap:balance]">
               {t('contact.titlePrefix')}{' '}
               <span className="gradient-text animate-gradient-shift">
                 {t('contact.titleHighlight')}
@@ -328,8 +329,8 @@ export default function Contact() {
 
             <div>
               <a
-                href={cvFile}
-                download="Mohamed_Mousa_CV.pdf"
+                href={cv.href}
+                download={cv.downloadName}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
                 <Download className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
@@ -339,14 +340,14 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right — form card */}
+        {/* Right — form card (7.1: flex column, 40px padding (p-10), textarea grows with flex-grow 1 & min-h-[180px], privacy line below submit) */}
         <div
           onMouseMove={handleSpotlightMove}
           style={{ transitionDelay: '80ms' }}
-          className="spotlight-card relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl p-6 sm:p-8 flex flex-col justify-center transition-all duration-300 focus-within:border-[#38BDF8]/45 focus-within:shadow-[0_0_0_1px_rgba(56,189,248,0.25),0_0_36px_-8px_rgba(56,189,248,0.28)] reveal"
+          className="spotlight-card relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl p-10 flex flex-col transition-all duration-300 focus-within:border-[#38BDF8]/45 focus-within:shadow-[0_0_0_1px_rgba(56,189,248,0.25),0_0_36px_-8px_rgba(56,189,248,0.28)] reveal"
         >
           {status === 'success' ? (
-            <div className="relative z-10 py-12 px-4 text-center flex flex-col items-center justify-center my-auto">
+            <div className="relative z-10 py-12 px-4 text-center flex flex-col items-center justify-center my-auto flex-1">
               <div
                 aria-hidden="true"
                 className="h-16 w-16 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center mb-5 animate-check-pop"
@@ -370,7 +371,7 @@ export default function Contact() {
               onSubmit={handleSubmit}
               noValidate
               aria-busy={status === 'loading'}
-              className="relative z-10 space-y-5"
+              className="relative z-10 flex flex-col flex-1 gap-5"
             >
               {/* Topic selectable chips (radiogroup) */}
               <div>
@@ -405,8 +406,8 @@ export default function Contact() {
                         onKeyDown={(e) => handleTopicKeyDown(e, idx)}
                         className={`px-3 py-1.5 rounded-[10px] text-[13px] font-mono transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow ${
                           isSelected
-                            ? 'bg-[rgba(56,189,248,0.12)] border border-[rgba(56,189,248,0.4)] text-[#7DD3FC] font-medium'
-                            : 'bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-[#CBD5E1] hover:border-[rgba(255,255,255,0.22)] hover:text-[#F8FAFC]'
+                            ? 'chip-core'
+                            : 'chip-normal hover:border-[rgba(56,189,248,0.35)] hover:text-[#F8FAFC]'
                         }`}
                       >
                         {t(topic.labelKey)}
@@ -478,8 +479,8 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* Message */}
-              <div>
+              {/* Message (7.1: flex-grow 1, min-height 180px) */}
+              <div className="flex flex-col flex-1">
                 <label htmlFor="message" className="block text-sm font-medium text-[#CBD5E1] mb-2">
                   {t('contact.messageLabel')}
                 </label>
@@ -491,7 +492,7 @@ export default function Contact() {
                   placeholder={t('contact.messagePlaceholder')}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? 'message-error' : undefined}
-                  className={`${inputBase} resize-none ${
+                  className={`${inputBase} flex-1 min-h-[180px] resize-none ${
                     errors.message
                       ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
                       : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
@@ -528,24 +529,29 @@ export default function Contact() {
                 </div>
               )}
 
-              {/* Submit */}
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
-              >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
-                    {t('contact.sending')}
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5" aria-hidden="true" />
-                    {t('contact.send')}
-                  </>
-                )}
-              </button>
+              {/* Submit + Privacy note */}
+              <div className="pt-1">
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+                      {t('contact.sending')}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" aria-hidden="true" />
+                      {t('contact.send')}
+                    </>
+                  )}
+                </button>
+                <p className="mt-3 text-center text-[13px] text-[#94A3B8]">
+                  {t('contact.privacy')}
+                </p>
+              </div>
             </form>
           )}
         </div>

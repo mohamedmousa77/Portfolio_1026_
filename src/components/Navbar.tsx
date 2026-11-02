@@ -46,15 +46,24 @@ export default function Navbar() {
 
   return (
     <header
+      style={
+        scrolled
+          ? {
+              backgroundColor: 'var(--header-bg)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+            }
+          : undefined
+      }
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-ink-950/80 backdrop-blur-xl border-b border-[rgba(255,255,255,0.08)] py-3.5'
+          ? 'border-b border-[rgba(255,255,255,0.08)] py-3.5'
           : 'bg-transparent border-b border-transparent py-5'
       }`}
     >
       <nav
         aria-label={t('nav.ariaPrimary')}
-        className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between"
+        className="site-container flex items-center justify-between"
       >
         <a
           href="#home"
@@ -115,7 +124,7 @@ export default function Navbar() {
             {theme === 'dark' ? (
               <Sun className="h-4 w-4 text-[#38BDF8] transition-transform duration-200 hover:rotate-12" aria-hidden="true" />
             ) : (
-              <Moon className="h-4 w-4 text-[#0284C7] transition-transform duration-200 hover:-rotate-12" aria-hidden="true" />
+              <Moon className="h-4 w-4 text-[#0369A1] transition-transform duration-200 hover:-rotate-12" aria-hidden="true" />
             )}
           </button>
 
@@ -153,7 +162,7 @@ export default function Navbar() {
             {theme === 'dark' ? (
               <Sun className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
             ) : (
-              <Moon className="h-4 w-4 text-[#0284C7]" aria-hidden="true" />
+              <Moon className="h-4 w-4 text-[#0369A1]" aria-hidden="true" />
             )}
           </button>
 
@@ -191,7 +200,14 @@ export default function Navbar() {
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
         }`}
       >
-        <ul className="px-6 pt-4 pb-6 space-y-1 bg-ink-900/95 backdrop-blur-xl border-t border-[rgba(255,255,255,0.08)]">
+        <ul
+          style={{
+            backgroundColor: 'var(--header-bg)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+          }}
+          className="site-container pt-4 pb-6 space-y-1 border-t border-[rgba(255,255,255,0.08)]"
+        >
           {links.map((link) => {
             const isActive = activeId === link.id;
             return (

@@ -18,6 +18,9 @@ export interface Project {
   github: string;
   demo?: string;
   image?: string;
+  thumbnail?: string;
+  resultKey?: string;
+  placeholderType?: 'wafra' | 'default';
 }
 
 export interface FeaturedProjectMetric {
@@ -51,9 +54,9 @@ const assetImages = import.meta.glob<string>('../../assets/*.{png,jpg,jpeg,webp}
 });
 
 export const featuredProject: FeaturedProject = {
-  title: 'Audio Store: Enterprise E-Commerce Platform',
+  title: 'Audio Store: Enterprise E-\u2060Commerce Platform',
   description:
-    'A production-ready e-commerce platform built end-to-end during my internship at Exprivia: a customer storefront plus an admin panel for sales analytics, order tracking and promo codes. Built on 4-layer Clean Architecture with DDD, 50+ JWT-secured REST endpoints and an Angular SPA with NgRx and 8 lazy-loaded modules.',
+    'A production-ready e-\u2060commerce platform built end-\u2060to-\u2060end during my internship at Exprivia: a customer storefront plus an admin panel for sales analytics, order tracking and promo codes. Built on 4-layer Clean Architecture with DDD, 50+ JWT-secured REST endpoints and an Angular SPA with NgRx and 8 lazy-loaded modules.',
   badges: [
     { label: 'Featured', variant: 'featured' },
     { label: 'Web', variant: 'category' },
@@ -93,11 +96,11 @@ export const projects: Project[] = [
     id: 1,
     title: 'Personal Finance App',
     description:
-      'A full-stack personal finance manager for tracking income, expenses and budgets with interactive dashboards and recurring-transaction support.',
-    technologies: ['Angular', 'ASP.NET', 'SSMS'],
+      'A full-\u2060stack personal finance manager with interactive dashboards, budgets and recurring-transaction support.',
+    resultKey: 'projects.items.1.result',
+    technologies: ['Angular', 'ASP.NET Core', 'SQL Server', 'EF Core', 'Chart.js'],
     category: 'Web',
     github: 'https://github.com/mohamedmousa7777/FinancialApp',
-    // demo: 'https://example.com/personal-finance',
     image: personalFinImgance,
   },
   {
@@ -122,9 +125,9 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: 'Multi Step Form',
+    title: 'Multi-\u2060Step Form',
     description:
-      'An accessible, animated multi-step wizard with client-side validation, progress tracking and a polished custom UI.',
+      'An accessible, animated multi-\u2060step wizard with client-side validation, progress tracking and a polished custom UI.',
     technologies: ['Angular', 'CSS', 'TypeScript'],
     category: 'Web',
     github: 'https://github.com/mohamedmousa77/multi-step-form',
@@ -132,23 +135,24 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    title: 'Wafra E-commerce',
+    title: 'Wafra E-\u2060commerce',
     description:
       'A mobile commerce platform with product catalog, cart, secure checkout and order history, built around a REST API backend.',
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa77',
-    // demo: 'https://example.com/wafra',
+    thumbnail: assetImages['../../assets/wafra.png'],
+    placeholderType: 'wafra',
   },
   {
     id: 6,
-    title: 'E-commerce Product Page',
+    title: 'E-\u2060commerce Product Page',
     description:
       'A responsive product detail page with image gallery, variant selection, cart preview and accessible markup.',
     technologies: ['HTML', 'JavaScript', 'TypeScript', 'CSS'],
     category: 'Web',
     github: 'https://github.com/mohamedmousa77',
-    image: productPage
+    image: productPage,
   },
   {
     id: 7,
@@ -158,7 +162,6 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa7777/Attendance-App',
-    // demo: 'https://example.com/attendance',
     image: attendanceImg,
   },
   {
@@ -178,7 +181,6 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa77',
-    // demo: 'https://example.com/whatsapp-clone',
   },
   {
     id: 10,
@@ -206,7 +208,6 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa77',
-    // demo: 'https://example.com/lost-found',
     image: lostAndFoundImg,
   },
   {
@@ -217,7 +218,6 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Dart', 'REST API'],
     category: 'Mobile',
     github: 'https://github.com/mohamedmousa77',
-    // demo: 'https://example.com/pos',
     image: posImg,
   },
 ];

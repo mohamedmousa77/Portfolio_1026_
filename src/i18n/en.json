@@ -16,7 +16,7 @@
     "badge": "Available for new opportunities · Italy & Remote",
     "firstName": "Mohamed",
     "lastName": "Mousa",
-    "subtitle": "Senior Full-Stack .NET Developer",
+    "subtitle": "Senior Full-\u2060Stack .NET Developer",
     "descStart": "I design and build scalable enterprise software with ",
     "descAnd": " and ",
     "descEnd": ", from database to deployment, for web and mobile.",
@@ -24,14 +24,15 @@
     "getInTouch": "Get in Touch",
     "downloadCv": "Download CV",
     "meta": "Puglia, Italy · Italian · English · Arabic",
-    "portraitAlt": "Portrait of Mohamed Mousa, Senior Full-Stack .NET Developer",
+    "portraitAlt": "Portrait of Mohamed Mousa, Senior Full-\u2060Stack .NET Developer",
     "scrollAria": "Scroll down to About section",
     "scroll": "Scroll"
   },
   "about": {
     "eyebrow": "01 — About",
     "title": "Engineering software that lasts",
-    "intro": "I'm a Senior Full-Stack .NET developer who builds enterprise applications meant to survive growth, not just launch. I own the whole path, from SQL Server schema to Angular UI to Azure deployment, using Clean Architecture, DDD and CQRS so codebases stay readable and testable as teams and requirements change. I work in Italian, English and Arabic, and I've delivered for clients in Italy, the UAE and the USA.",
+    "intro1": "I'm a Senior Full-\u2060Stack .NET developer who builds enterprise applications meant to survive growth, not just launch.",
+    "intro2": "I own the whole path, from SQL Server schema to Angular UI to Azure deployment, using Clean Architecture, DDD and CQRS so codebases stay readable and testable as teams and requirements change. I work in Italian, English and Arabic, and I've delivered for clients in Italy, the UAE and the USA.",
     "stats": {
       "yearsValue": "5+",
       "yearsLabel": "Years Building",
@@ -43,9 +44,9 @@
       "cleanLabel": "Architecture First"
     },
     "pillars": {
-      "p1Title": "Enterprise-Grade Architecture",
+      "p1Title": "Enterprise-\u2060Grade Architecture",
       "p1Desc": "Clean Architecture, DDD and CQRS give every system clear boundaries and testable layers, so it stays maintainable as it grows.",
-      "p2Title": "Full-Stack Ownership",
+      "p2Title": "Full-\u2060Stack Ownership",
       "p2Desc": "From SQL Server schemas and .NET APIs to Angular frontends and Flutter mobile apps, I deliver the whole stack in one consistent language.",
       "p3Title": "Cloud & Quality",
       "p3Desc": "Dockerized services, CI/CD on Azure DevOps and GitHub Actions, 70%+ unit test coverage and SonarQube checks, so performance and reliability are built in from the start."
@@ -54,13 +55,13 @@
       "heading": "Highlights",
       "h1Metric": "50+",
       "h1Label": "REST endpoints",
-      "h1Context": "Under 200 ms avg response, e-commerce platform",
+      "h1Context": "Under 200 ms avg response, e-\u2060commerce platform",
       "h2Metric": "70%+",
       "h2Label": "Unit test coverage",
       "h2Context": "xUnit + Moq, SonarQube",
       "h3Metric": "~35%",
       "h3Label": "Faster queries",
-      "h3Context": "T-SQL index tuning, finance app",
+      "h3Context": "T-\u2060SQL index tuning, finance app",
       "h4Metric": "~40%",
       "h4Label": "Faster perceived load",
       "h4Context": "Angular lazy-loading, 8 modules",
@@ -74,14 +75,14 @@
   "projects": {
     "eyebrow": "02 — Projects",
     "title": "Things I've built",
-    "subtitle": "A selection of web and mobile applications I've designed and developed end-to-end.",
+    "subtitle": "A selection of web and mobile applications I've designed and developed end-\u2060to-\u2060end.",
     "ndaNote": "Selected work. Client projects under NDA are not shown.",
     "featuredLabel": "FEATURED PROJECT",
     "featured": {
       "badgeFeatured": "Featured",
       "badgeWeb": "Web",
-      "title": "Audio Store: Enterprise E-Commerce Platform",
-      "description": "A production-ready e-commerce platform built end-to-end during my internship at Exprivia: a customer storefront plus an admin panel for sales analytics, order tracking and promo codes. Built on 4-layer Clean Architecture with DDD, 50+ JWT-secured REST endpoints and an Angular SPA with NgRx and 8 lazy-loaded modules.",
+      "title": "Audio Store: Enterprise E-\u2060Commerce Platform",
+      "description": "A production-ready e-\u2060commerce platform built end-\u2060to-\u2060end during my internship at Exprivia: a customer storefront plus an admin panel for sales analytics, order tracking and promo codes. Built on 4-layer Clean Architecture with DDD, 50+ JWT-secured REST endpoints and an Angular SPA with NgRx and 8 lazy-loaded modules.",
       "m1Value": "50+",
       "m1Label": "REST endpoints",
       "m2Value": "<200 ms",
@@ -117,7 +118,8 @@
     "items": {
       "1": {
         "title": "Personal Finance App",
-        "description": "A full-stack personal finance manager for tracking income, expenses and budgets with interactive dashboards and recurring-transaction support."
+        "description": "A full-\u2060stack personal finance manager with interactive dashboards, budgets and recurring-transaction support.",
+        "result": "200+ active users at peak"
       },
       "2": {
         "title": "Rock Paper Scissors",
@@ -128,15 +130,15 @@
         "description": "A two-player strategy game with drop animations, win detection and a minimalist board UI built in Angular."
       },
       "4": {
-        "title": "Multi Step Form",
-        "description": "An accessible, animated multi-step wizard with client-side validation, progress tracking and a polished custom UI."
+        "title": "Multi-\u2060Step Form",
+        "description": "An accessible, animated multi-\u2060step wizard with client-side validation, progress tracking and a polished custom UI."
       },
       "5": {
-        "title": "Wafra E-commerce",
+        "title": "Wafra E-\u2060commerce",
         "description": "A mobile commerce platform with product catalog, cart, secure checkout and order history, built around a REST API backend."
       },
       "6": {
-        "title": "E-commerce Product Page",
+        "title": "E-\u2060commerce Product Page",
         "description": "A responsive product detail page with image gallery, variant selection, cart preview and accessible markup."
       },
       "7": {
@@ -182,7 +184,8 @@
       "testing": "Testing & Quality"
     },
     "skillNames": {
-      "storedProc": "Stored Procedures & Query Optimization",
+      "storedProcedures": "Stored Procedures",
+      "queryOptimization": "Query Optimization",
       "integrationTesting": "Integration Testing"
     },
     "also": "Also: Flutter · Dart · Firebase · Agile/Scrum · Code Review · Visual Studio · Rider"
@@ -216,6 +219,7 @@
     "messagePlaceholder": "Tell me about your project or the role...",
     "send": "Send message",
     "sending": "Sending...",
+    "privacy": "Your details are only used to reply to your message.",
     "successTitle": "Message sent. Thanks, I'll get back to you soon.",
     "sendAnother": "Send another message",
     "errorMessage": "Something went wrong. Please try again or email me directly.",
@@ -229,7 +233,7 @@
     }
   },
   "footer": {
-    "tagline": "Senior Full-Stack .NET Developer building scalable, cloud-ready software.",
+    "tagline": "Senior Full-\u2060Stack .NET Developer building scalable, cloud-ready software.",
     "navigate": "Navigate",
     "connect": "Connect",
     "github": "GitHub",

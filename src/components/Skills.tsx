@@ -48,10 +48,11 @@ const groups: SkillGroup[] = [
     titleKey: 'skills.groups.cloud',
     icon: Cloud,
     skills: [
-      {
-        name: 'Microsoft Azure (App Services, Functions, SQL Database, Service Bus)',
-        core: true,
-      },
+      { name: 'Microsoft Azure', core: true },
+      { name: 'App Services' },
+      { name: 'Azure Functions' },
+      { name: 'Azure SQL Database' },
+      { name: 'Service Bus' },
       { name: 'Azure DevOps', core: true },
       { name: 'Docker' },
       { name: 'GitHub Actions (CI/CD)' },
@@ -79,8 +80,9 @@ const groups: SkillGroup[] = [
     icon: Database,
     skills: [
       { name: 'SQL Server', core: true },
-      { name: 'T-SQL' },
-      { name: 'Stored Procedures & Query Optimization', nameKey: 'skills.skillNames.storedProc' },
+      { name: 'T-\u2060SQL' },
+      { name: 'Stored Procedures', nameKey: 'skills.skillNames.storedProcedures' },
+      { name: 'Query Optimization', nameKey: 'skills.skillNames.queryOptimization' },
       { name: 'PostgreSQL' },
       { name: 'SSIS (ETL)' },
       { name: 'RabbitMQ' },
@@ -108,13 +110,13 @@ export default function Skills() {
   const { t } = useTranslation();
 
   return (
-    <section id="skills" className="relative py-16 md:py-[108px] px-6 md:px-12 lg:px-20 max-w-[1200px] mx-auto">
+    <section id="skills" className="relative section-block">
       <div
         aria-hidden="true"
-        className="absolute top-1/2 -translate-y-1/2 -right-40 h-80 w-80 rounded-full bg-electric/10 blur-[120px]"
+        className="absolute top-1/2 -translate-y-1/2 -right-40 h-80 w-80 rounded-full bg-electric/10 blur-[120px] pointer-events-none"
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 site-container">
         <div className="text-center mb-14 reveal">
           <span className="section-eyebrow">
             {t('skills.eyebrow')}
@@ -135,8 +137,8 @@ export default function Skills() {
                 style={{ transitionDelay: `${gi * 60}ms` }}
                 className={`flex flex-col p-6 rounded-[20px] transition-all duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 reveal ${
                   isAzureHighlight
-                    ? 'border border-[rgba(56,189,248,0.35)] bg-gradient-to-b from-[rgba(56,189,248,0.05)] to-transparent shadow-[0_0_48px_rgba(56,189,248,0.10)] [@media(hover:hover)]:hover:border-[rgba(56,189,248,0.5)]'
-                    : 'border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.02)] [@media(hover:hover)]:hover:border-[rgba(255,255,255,0.16)]'
+                    ? 'surface-card border-[rgba(56,189,248,0.35)] bg-gradient-to-b from-[rgba(56,189,248,0.05)] to-transparent shadow-[0_0_48px_rgba(56,189,248,0.10)] [@media(hover:hover)]:hover:border-[rgba(56,189,248,0.5)]'
+                    : 'surface-card [@media(hover:hover)]:hover:border-[rgba(255,255,255,0.16)]'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-5">
@@ -146,7 +148,7 @@ export default function Skills() {
                   >
                     <group.icon className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[20px] font-semibold text-[#F8FAFC] leading-snug lg:whitespace-nowrap">
+                  <h3 className="text-[20px] font-semibold text-[#F8FAFC] leading-snug lg:whitespace-nowrap [text-wrap:balance]">
                     {t(group.titleKey)}
                   </h3>
                 </div>
@@ -156,9 +158,7 @@ export default function Skills() {
                     <li
                       key={skill.name}
                       className={`max-w-full px-3 py-1.5 rounded-[10px] text-[13px] leading-snug font-mono break-words transition-colors ${
-                        skill.core
-                          ? 'bg-[rgba(56,189,248,0.12)] border border-[rgba(56,189,248,0.35)] text-[#7DD3FC] font-medium'
-                          : 'bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.10)] text-[#CBD5E1]'
+                        skill.core ? 'chip-core' : 'chip-normal'
                       }`}
                     >
                       {skill.nameKey ? t(skill.nameKey) : skill.name}
