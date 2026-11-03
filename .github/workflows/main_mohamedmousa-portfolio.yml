@@ -22,7 +22,7 @@ jobs:
 
       - name: npm install and build
         run: |
-          npm install
+          npm ci
           npm run build
 
       # TRCCO CRUCIALE: Facciamo l'upload puntando direttamente alla cartella dist
@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+          path: dist
 
       - name: Login to Azure
         uses: azure/login@v2
