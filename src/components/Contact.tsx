@@ -140,11 +140,11 @@ export default function Contact() {
 
   const handleChange =
     (field: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setForm((prev) => ({ ...prev, [field]: e.target.value }));
-      if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
-      if (status === 'error') setStatus('idle');
-    };
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setForm((prev) => ({ ...prev, [field]: e.target.value }));
+        if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
+        if (status === 'error') setStatus('idle');
+      };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -156,7 +156,7 @@ export default function Contact() {
         ? `[Topic: ${selectedTopic}] ${trimmedMessage}`
         : trimmedMessage;
 
-      const { error } = await supabase.from('contact_messages').insert({
+      const { error } = await supabase.from('messages').insert({
         name: form.name.trim(),
         email: form.email.trim(),
         message: finalMessage,
@@ -292,9 +292,8 @@ export default function Contact() {
                 <div className="relative z-10 flex items-center gap-2 shrink-0">
                   <span
                     aria-live="polite"
-                    className={`text-xs font-medium text-[#34D399] transition-opacity duration-200 ${
-                      copied ? 'opacity-100' : 'opacity-0 sr-only'
-                    }`}
+                    className={`text-xs font-medium text-[#34D399] transition-opacity duration-200 ${copied ? 'opacity-100' : 'opacity-0 sr-only'
+                      }`}
                   >
                     {copied ? t('contact.copied') : ''}
                   </span>
@@ -404,11 +403,10 @@ export default function Contact() {
                           setSelectedTopic((prev) => (prev === topic.value ? null : topic.value))
                         }
                         onKeyDown={(e) => handleTopicKeyDown(e, idx)}
-                        className={`px-3 py-1.5 rounded-[10px] text-[13px] font-mono transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow ${
-                          isSelected
-                            ? 'chip-core'
-                            : 'chip-normal hover:border-[rgba(56,189,248,0.35)] hover:text-[#F8FAFC]'
-                        }`}
+                        className={`px-3 py-1.5 rounded-[10px] text-[13px] font-mono transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow ${isSelected
+                          ? 'chip-core'
+                          : 'chip-normal hover:border-[rgba(56,189,248,0.35)] hover:text-[#F8FAFC]'
+                          }`}
                       >
                         {t(topic.labelKey)}
                       </button>
@@ -430,11 +428,10 @@ export default function Contact() {
                   placeholder={t('contact.namePlaceholder')}
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? 'name-error' : undefined}
-                  className={`${inputBase} ${
-                    errors.name
-                      ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
-                      : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
-                  }`}
+                  className={`${inputBase} ${errors.name
+                    ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
+                    : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
+                    }`}
                 />
                 {errors.name && (
                   <p
@@ -461,11 +458,10 @@ export default function Contact() {
                   placeholder={t('contact.emailPlaceholder')}
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'email-error' : undefined}
-                  className={`${inputBase} ${
-                    errors.email
-                      ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
-                      : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
-                  }`}
+                  className={`${inputBase} ${errors.email
+                    ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
+                    : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
+                    }`}
                 />
                 {errors.email && (
                   <p
@@ -492,11 +488,10 @@ export default function Contact() {
                   placeholder={t('contact.messagePlaceholder')}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? 'message-error' : undefined}
-                  className={`${inputBase} flex-1 min-h-[180px] resize-none ${
-                    errors.message
-                      ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
-                      : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
-                  }`}
+                  className={`${inputBase} flex-1 min-h-[180px] resize-none ${errors.message
+                    ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
+                    : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
+                    }`}
                 />
                 {errors.message && (
                   <p
