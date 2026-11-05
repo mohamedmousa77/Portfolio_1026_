@@ -110,7 +110,7 @@ export default function Skills() {
   const { t } = useTranslation();
 
   return (
-    <section id="skills" className="relative section-block">
+    <section id="skills" className="relative overflow-hidden section-block">
       <div
         aria-hidden="true"
         className="absolute top-1/2 -translate-y-1/2 -right-40 h-80 w-80 rounded-full bg-electric/10 blur-[120px] pointer-events-none"
@@ -135,20 +135,20 @@ export default function Skills() {
               <div
                 key={group.id}
                 style={{ transitionDelay: `${gi * 60}ms` }}
-                className={`flex flex-col p-6 rounded-[20px] transition-all duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 reveal ${
+                className={`min-w-0 flex flex-col p-6 rounded-[20px] transition-all duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 reveal ${
                   isAzureHighlight
                     ? 'surface-card border-[rgba(56,189,248,0.35)] bg-gradient-to-b from-[rgba(56,189,248,0.05)] to-transparent shadow-[0_0_48px_rgba(56,189,248,0.10)] [@media(hover:hover)]:hover:border-[rgba(56,189,248,0.5)]'
                     : 'surface-card [@media(hover:hover)]:hover:border-[rgba(255,255,255,0.16)]'
                 }`}
               >
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-5 min-w-0">
                   <div
                     aria-hidden="true"
                     className="h-10 w-10 shrink-0 rounded-[12px] bg-gradient-to-br from-cyan/20 to-electric/20 border border-cyan/20 flex items-center justify-center"
                   >
                     <group.icon className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
-                  <h3 className="text-[20px] font-semibold text-[#F8FAFC] leading-snug lg:whitespace-nowrap [text-wrap:balance]">
+                  <h3 className="min-w-0 text-[20px] font-semibold text-[#F8FAFC] leading-snug lg:whitespace-nowrap [text-wrap:balance]">
                     {t(group.titleKey)}
                   </h3>
                 </div>

@@ -118,7 +118,7 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
 
       <article
         aria-labelledby="featured-project-title"
-        className="relative w-full rounded-[28px] surface-card p-6 lg:p-10 overflow-hidden reveal reveal-featured"
+        className="relative w-full rounded-[24px] sm:rounded-[28px] surface-card p-5 sm:p-6 lg:p-10 overflow-hidden reveal reveal-featured"
       >
         {/* Soft radial cyan glow at top-right */}
         <div
@@ -128,7 +128,7 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10">
           {/* Image composition — vertically centered in its column (5.2) */}
-          <div className="w-full lg:w-[55%] order-1 lg:order-2 flex items-center">
+          <div className="w-full lg:w-[55%] min-w-0 order-1 lg:order-2 flex items-center">
             <div className="featured-mockup-group relative w-full pb-[10%]">
               {/* Storefront base frame (92% width so the 8% horizontal offset fits within 100% column width) */}
               <div className="w-[92%]">
@@ -153,7 +153,7 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
           </div>
 
           {/* Text column — bottom on <1024px, left column (~45%) on >=1024px */}
-          <div className="w-full lg:w-[45%] order-2 lg:order-1 flex flex-col items-start">
+          <div className="w-full lg:w-[45%] min-w-0 order-2 lg:order-1 flex flex-col items-start">
             {/* Badges */}
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {project.badges.map((b) =>
@@ -178,13 +178,13 @@ function FeaturedProjectCard({ project }: { project: FeaturedProject }) {
             {/* Title */}
             <h3
               id="featured-project-title"
-              className="text-[28px] md:text-[32px] lg:text-[36px] font-bold tracking-[-0.02em] leading-tight text-[#F8FAFC] mb-4 [text-wrap:balance]"
+              className="text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold tracking-[-0.02em] leading-tight text-[#F8FAFC] mb-4 [text-wrap:balance]"
             >
               {t('projects.featured.title')}
             </h3>
 
             {/* Description */}
-            <p className="text-[16px] md:text-[17px] leading-[1.65] text-[#CBD5E1] mb-6">
+            <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-[1.65] text-[#CBD5E1] mb-6">
               {t('projects.featured.description')}
             </p>
 
@@ -538,11 +538,11 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative section-block"
+      className="relative overflow-hidden section-block"
     >
       <div
         aria-hidden="true"
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[600px] rounded-full bg-cyan/10 blur-[120px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[600px] max-w-full rounded-full bg-cyan/10 blur-[120px] pointer-events-none"
       />
 
       <div className="relative z-10 site-container">
@@ -561,7 +561,7 @@ export default function Projects() {
           <div
             role="radiogroup"
             aria-label={t('projects.filterAria')}
-            className="relative inline-flex w-full sm:w-auto items-center justify-center p-1 rounded-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] backdrop-blur-[8px]"
+            className="relative inline-flex w-full sm:w-auto max-w-full items-center justify-center p-1 rounded-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] backdrop-blur-[8px]"
           >
             {/* Sliding thumb */}
             <span
@@ -588,12 +588,12 @@ export default function Projects() {
                   tabIndex={isSelected ? 0 : -1}
                   onClick={() => selectFilter(opt.value)}
                   onKeyDown={(e) => handleRadioKeyDown(e, idx)}
-                  className={`relative z-10 flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-[18px] py-[10px] rounded-full text-[15px] font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
+                  className={`relative z-10 flex-1 sm:flex-initial min-w-0 inline-flex items-center justify-center gap-1.5 sm:gap-2 min-h-[44px] px-3 sm:px-[18px] py-[10px] rounded-full text-[14px] sm:text-[15px] font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
                     isSelected ? 'text-[#FFFFFF]' : 'text-[#94A3B8] hover:text-[#E2E8F0]'
                   }`}
                 >
                   <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span>{t(opt.labelKey)}</span>
+                  <span className="truncate">{t(opt.labelKey)}</span>
                 </button>
               );
             })}
@@ -649,7 +649,7 @@ export default function Projects() {
                       animationDelay: staggerDelay,
                       transitionDelay: phase === 'idle' && !isNewlyExpanded ? `${(i % 3) * 60}ms` : '0ms',
                     }}
-                    className={`project-card-subgrid group h-full min-[700px]:mb-7 rounded-[20px] surface-card backdrop-blur-xl overflow-hidden flex flex-col transition-all duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-1 [@media(hover:hover)]:hover:border-[rgba(56,189,248,0.3)] [@media(hover:hover)]:hover:shadow-[0_12px_36px_-10px_rgba(56,189,248,0.18)] ${animClass} ${
+                    className={`project-card-subgrid min-w-0 group h-full min-[700px]:mb-7 rounded-[20px] surface-card backdrop-blur-xl overflow-hidden flex flex-col transition-all duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-1 [@media(hover:hover)]:hover:border-[rgba(56,189,248,0.3)] [@media(hover:hover)]:hover:shadow-[0_12px_36px_-10px_rgba(56,189,248,0.18)] ${animClass} ${
                       isClipped ? 'pointer-events-none select-none' : ''
                     }`}
                   >
@@ -696,9 +696,9 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         tabIndex={isClipped ? -1 : 0}
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-[#38BDF8] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 transition-colors"
+                        className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-medium text-slate-300 hover:text-[#38BDF8] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 transition-colors"
                       >
-                        <Github className="h-4 w-4" aria-hidden="true" />
+                        <Github className="h-4 w-4 shrink-0" aria-hidden="true" />
                         {t('projects.code')}
                       </a>
                       {project.demo && (
@@ -707,9 +707,9 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           tabIndex={isClipped ? -1 : 0}
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-[#38BDF8] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 transition-colors"
+                          className="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-medium text-slate-300 hover:text-[#38BDF8] rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 transition-colors"
                         >
-                          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                          <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
                           {t('projects.liveDemo')}
                         </a>
                       )}
@@ -740,7 +740,7 @@ export default function Projects() {
                 aria-expanded={expanded}
                 aria-controls="projects-grid-wrapper"
                 onClick={handleToggleExpand}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-[#F8FAFC] border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.05)] backdrop-blur-md hover:border-[rgba(56,189,248,0.4)] hover:bg-[rgba(255,255,255,0.08)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className="inline-flex items-center gap-2 min-h-[44px] px-6 py-3 rounded-full text-sm font-semibold text-[#F8FAFC] border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.05)] backdrop-blur-md hover:border-[rgba(56,189,248,0.4)] hover:bg-[rgba(255,255,255,0.08)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
                 {expanded ? (
                   <>

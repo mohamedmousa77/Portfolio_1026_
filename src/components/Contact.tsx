@@ -140,11 +140,11 @@ export default function Contact() {
 
   const handleChange =
     (field: keyof FormState) =>
-      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setForm((prev) => ({ ...prev, [field]: e.target.value }));
-        if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
-        if (status === 'error') setStatus('idle');
-      };
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+      if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
+      if (status === 'error') setStatus('idle');
+    };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -156,7 +156,7 @@ export default function Contact() {
         ? `[Topic: ${selectedTopic}] ${trimmedMessage}`
         : trimmedMessage;
 
-      const { error } = await supabase.from('messages').insert({
+      const { error } = await supabase.from('contact_messages').insert({
         name: form.name.trim(),
         email: form.email.trim(),
         message: finalMessage,
@@ -171,63 +171,62 @@ export default function Contact() {
   };
 
   const inputBase =
-    'w-full px-4 py-3 text-[16px] rounded-[12px] bg-ink-900/80 border text-[#F8FAFC] placeholder-slate-500 transition-all duration-200 focus:outline-none';
+    'w-full max-w-full px-4 py-3 text-[16px] rounded-[12px] bg-ink-900/80 border text-[#F8FAFC] placeholder-slate-500 transition-all duration-200 focus:outline-none';
 
   return (
     <section id="contact" className="relative overflow-hidden section-block">
-      {/* Hero-consistent background treatment */}
-      <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
-      <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-60 pointer-events-none" />
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[500px] rounded-full bg-electric/10 blur-[120px] pointer-events-none"
-      />
+      {/* Hero-consistent background treatment clipped inside its own wrapper */}
+      <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-grid opacity-50" />
+        <div className="absolute inset-0 bg-radial-glow opacity-60" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[500px] max-w-full rounded-full bg-electric/10 blur-[120px]" />
+      </div>
 
-      <div className="relative z-10 site-container grid lg:grid-cols-2 gap-12 lg:items-stretch">
-        {/* Left — info */}
-        <div className="flex flex-col justify-between reveal">
-          <div>
+      <div className="relative z-10 site-container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 lg:items-stretch">
+        {/* Left — info (min-w-0 prevents CSS grid blowout on narrow viewports) */}
+        <div className="min-w-0 max-w-full flex flex-col justify-between reveal">
+          <div className="min-w-0">
             <span className="section-eyebrow">{t('contact.eyebrow')}</span>
-            <h2 className="mt-3 text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC] [text-wrap:balance]">
+            <h2 className="mt-3 text-[32px] sm:text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC] [text-wrap:balance]">
               {t('contact.titlePrefix')}{' '}
               <span className="gradient-text animate-gradient-shift">
                 {t('contact.titleHighlight')}
               </span>
               .
             </h2>
-            <p className="mt-4 text-[16px] md:text-[18px] text-[#CBD5E1] leading-[1.6] max-w-xl">
+            <p className="mt-4 text-[16px] md:text-[18px] text-[#CBD5E1] leading-[1.6] max-w-xl break-words">
               {t('contact.subtitle')}
             </p>
 
             {/* Availability pill */}
-            <div className="mt-5 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/[0.07] text-sm font-medium text-[#F8FAFC]">
-              <span className="relative flex h-2.5 w-2.5 items-center justify-center" aria-hidden="true">
+            <div className="mt-5 inline-flex items-center gap-2.5 max-w-full px-3.5 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/[0.07] text-sm font-medium text-[#F8FAFC]">
+              <span className="relative flex h-2.5 w-2.5 shrink-0 items-center justify-center" aria-hidden="true">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#34D399] animate-emerald-pulse" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#34D399]" />
               </span>
-              {t('contact.availability')}
+              <span className="break-words">{t('contact.availability')}</span>
             </div>
 
             {/* Contact Cards */}
-            <div className="mt-8 space-y-3.5">
+            <div className="mt-8 space-y-3.5 min-w-0">
               {/* GitHub */}
               <a
                 href="https://github.com/mohamedmousa77"
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseMove={handleSpotlightMove}
-                className="spotlight-card relative overflow-hidden flex items-center justify-between gap-4 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl hover:glow-border [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className="spotlight-card relative overflow-hidden w-full max-w-full flex items-center justify-between gap-3 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl hover:glow-border [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
-                <div className="relative z-10 flex items-center gap-4">
+                <div className="relative z-10 flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
                   <div
                     aria-hidden="true"
                     className="h-11 w-11 shrink-0 rounded-xl bg-gradient-to-br from-cyan/20 to-electric/20 border border-cyan/20 flex items-center justify-center"
                   >
                     <Github className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-sm text-[#94A3B8]">{t('contact.githubLabel')}</div>
-                    <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors">
+                    <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors truncate">
                       @mohamedmousa77
                     </div>
                   </div>
@@ -244,18 +243,18 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseMove={handleSpotlightMove}
-                className="spotlight-card relative overflow-hidden flex items-center justify-between gap-4 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl hover:glow-border [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className="spotlight-card relative overflow-hidden w-full max-w-full flex items-center justify-between gap-3 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl hover:glow-border [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
-                <div className="relative z-10 flex items-center gap-4">
+                <div className="relative z-10 flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
                   <div
                     aria-hidden="true"
                     className="h-11 w-11 shrink-0 rounded-xl bg-gradient-to-br from-cyan/20 to-electric/20 border border-cyan/20 flex items-center justify-center"
                   >
                     <Linkedin className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-sm text-[#94A3B8]">{t('contact.linkedinLabel')}</div>
-                    <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors">
+                    <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors truncate">
                       Mohamed Mousa
                     </div>
                   </div>
@@ -269,11 +268,11 @@ export default function Contact() {
               {/* Email with mailto fallback + copy icon button */}
               <div
                 onMouseMove={handleSpotlightMove}
-                className="spotlight-card relative overflow-hidden flex items-center justify-between gap-3 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl hover:glow-border [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 group"
+                className="spotlight-card relative overflow-hidden w-full max-w-full flex items-center justify-between gap-2.5 sm:gap-3 p-4 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl hover:glow-border [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 group"
               >
                 <a
                   href={`mailto:${EMAIL_ADDRESS}`}
-                  className="relative z-10 flex items-center gap-4 flex-1 min-w-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
+                  className="relative z-10 flex items-center gap-3 sm:gap-4 flex-1 min-w-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
                 >
                   <div
                     aria-hidden="true"
@@ -281,9 +280,9 @@ export default function Contact() {
                   >
                     <Mail className="h-5 w-5 text-[#38BDF8]" aria-hidden="true" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <div className="text-sm text-[#94A3B8]">{t('contact.emailLabel')}</div>
-                    <div className="font-semibold text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors truncate">
+                    <div className="font-semibold text-sm sm:text-base text-[#F8FAFC] group-hover:text-[#38BDF8] transition-colors [overflow-wrap:anywhere]">
                       {EMAIL_ADDRESS}
                     </div>
                   </div>
@@ -292,8 +291,9 @@ export default function Contact() {
                 <div className="relative z-10 flex items-center gap-2 shrink-0">
                   <span
                     aria-live="polite"
-                    className={`text-xs font-medium text-[#34D399] transition-opacity duration-200 ${copied ? 'opacity-100' : 'opacity-0 sr-only'
-                      }`}
+                    className={`text-xs font-medium text-[#34D399] transition-opacity duration-200 ${
+                      copied ? 'opacity-100' : 'opacity-0 sr-only'
+                    }`}
                   >
                     {copied ? t('contact.copied') : ''}
                   </span>
@@ -301,7 +301,7 @@ export default function Contact() {
                     type="button"
                     onClick={handleCopyEmail}
                     aria-label={t('contact.copyEmailAria')}
-                    className="h-9 w-9 rounded-lg border border-[rgba(255,255,255,0.10)] bg-white/[0.04] flex items-center justify-center text-[#CBD5E1] hover:text-[#38BDF8] hover:border-[#38BDF8]/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
+                    className="h-11 w-11 shrink-0 rounded-lg border border-[rgba(255,255,255,0.10)] bg-white/[0.04] flex items-center justify-center text-[#CBD5E1] hover:text-[#38BDF8] hover:border-[#38BDF8]/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
                   >
                     {copied ? (
                       <Check className="h-4 w-4 text-[#34D399]" aria-hidden="true" />
@@ -315,13 +315,15 @@ export default function Contact() {
           </div>
 
           {/* Bottom left meta row + Download CV button */}
-          <div className="mt-8 pt-6 border-t border-[rgba(255,255,255,0.08)] space-y-5">
-            <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-[#94A3B8]">
-              <span>{t('contact.metaLocation')}</span>
+          <div className="mt-8 pt-6 border-t border-[rgba(255,255,255,0.08)] space-y-5 min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-sm text-[#94A3B8]">
+              <span className="min-w-0 break-words">{t('contact.metaLocation')}</span>
               {localTime && (
-                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[#CBD5E1]">
-                  <Clock className="h-3.5 w-3.5 text-[#38BDF8]" aria-hidden="true" />
-                  {localTime} {t('contact.localTimeSuffix')}
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[#CBD5E1] shrink-0">
+                  <Clock className="h-3.5 w-3.5 text-[#38BDF8] shrink-0" aria-hidden="true" />
+                  <span>
+                    {localTime} {t('contact.localTimeSuffix')}
+                  </span>
                 </span>
               )}
             </div>
@@ -330,20 +332,20 @@ export default function Contact() {
               <a
                 href={cv.href}
                 download={cv.downloadName}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-3 rounded-xl border border-[rgba(255,255,255,0.15)] bg-white/[0.04] text-sm font-semibold text-[#F8FAFC] hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/[0.08] [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
               >
-                <Download className="h-4 w-4 text-[#38BDF8]" aria-hidden="true" />
+                <Download className="h-4 w-4 text-[#38BDF8] shrink-0" aria-hidden="true" />
                 {t('contact.downloadCv')}
               </a>
             </div>
           </div>
         </div>
 
-        {/* Right — form card (7.1: flex column, 40px padding (p-10), textarea grows with flex-grow 1 & min-h-[180px], privacy line below submit) */}
+        {/* Right — form card (min-w-0, p-6 sm:p-8 lg:p-10 so 40px padding is preserved on desktop without squeezing narrow mobile screens) */}
         <div
           onMouseMove={handleSpotlightMove}
           style={{ transitionDelay: '80ms' }}
-          className="spotlight-card relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl p-10 flex flex-col transition-all duration-300 focus-within:border-[#38BDF8]/45 focus-within:shadow-[0_0_0_1px_rgba(56,189,248,0.25),0_0_36px_-8px_rgba(56,189,248,0.28)] reveal"
+          className="spotlight-card min-w-0 max-w-full relative overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.08)] bg-ink-850/60 backdrop-blur-xl p-6 sm:p-8 lg:p-10 flex flex-col transition-all duration-300 focus-within:border-[#38BDF8]/45 focus-within:shadow-[0_0_0_1px_rgba(56,189,248,0.25),0_0_36px_-8px_rgba(56,189,248,0.28)] reveal"
         >
           {status === 'success' ? (
             <div className="relative z-10 py-12 px-4 text-center flex flex-col items-center justify-center my-auto flex-1">
@@ -359,7 +361,7 @@ export default function Contact() {
               <button
                 type="button"
                 onClick={() => setStatus('idle')}
-                className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-[#38BDF8] hover:text-white hover:bg-white/[0.05] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
+                className="mt-6 inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-lg text-sm font-semibold text-[#38BDF8] hover:text-white hover:bg-white/[0.05] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow"
               >
                 <RotateCcw className="h-4 w-4" aria-hidden="true" />
                 {t('contact.sendAnother')}
@@ -370,7 +372,7 @@ export default function Contact() {
               onSubmit={handleSubmit}
               noValidate
               aria-busy={status === 'loading'}
-              className="relative z-10 flex flex-col flex-1 gap-5"
+              className="relative z-10 flex flex-col flex-1 gap-5 min-w-0"
             >
               {/* Topic selectable chips (radiogroup) */}
               <div>
@@ -403,10 +405,11 @@ export default function Contact() {
                           setSelectedTopic((prev) => (prev === topic.value ? null : topic.value))
                         }
                         onKeyDown={(e) => handleTopicKeyDown(e, idx)}
-                        className={`px-3 py-1.5 rounded-[10px] text-[13px] font-mono transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow ${isSelected
-                          ? 'chip-core'
-                          : 'chip-normal hover:border-[rgba(56,189,248,0.35)] hover:text-[#F8FAFC]'
-                          }`}
+                        className={`min-h-[40px] px-3 py-1.5 rounded-[10px] text-[13px] font-mono transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow ${
+                          isSelected
+                            ? 'chip-core'
+                            : 'chip-normal hover:border-[rgba(56,189,248,0.35)] hover:text-[#F8FAFC]'
+                        }`}
                       >
                         {t(topic.labelKey)}
                       </button>
@@ -428,10 +431,11 @@ export default function Contact() {
                   placeholder={t('contact.namePlaceholder')}
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? 'name-error' : undefined}
-                  className={`${inputBase} ${errors.name
-                    ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
-                    : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
-                    }`}
+                  className={`${inputBase} ${
+                    errors.name
+                      ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
+                      : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
+                  }`}
                 />
                 {errors.name && (
                   <p
@@ -458,10 +462,11 @@ export default function Contact() {
                   placeholder={t('contact.emailPlaceholder')}
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'email-error' : undefined}
-                  className={`${inputBase} ${errors.email
-                    ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
-                    : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
-                    }`}
+                  className={`${inputBase} ${
+                    errors.email
+                      ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
+                      : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
+                  }`}
                 />
                 {errors.email && (
                   <p
@@ -475,7 +480,7 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* Message (7.1: flex-grow 1, min-height 180px) */}
+              {/* Message (7.1: flex-grow 1, min-height 180px, 16px font to prevent iOS auto-zoom) */}
               <div className="flex flex-col flex-1">
                 <label htmlFor="message" className="block text-sm font-medium text-[#CBD5E1] mb-2">
                   {t('contact.messageLabel')}
@@ -488,10 +493,11 @@ export default function Contact() {
                   placeholder={t('contact.messagePlaceholder')}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? 'message-error' : undefined}
-                  className={`${inputBase} flex-1 min-h-[180px] resize-none ${errors.message
-                    ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
-                    : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
-                    }`}
+                  className={`${inputBase} flex-1 min-h-[180px] resize-none ${
+                    errors.message
+                      ? 'border-red-500/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.18)]'
+                      : 'border-[rgba(255,255,255,0.10)] focus:border-[#38BDF8] focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]'
+                  }`}
                 />
                 {errors.message && (
                   <p
@@ -529,7 +535,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 [@media(hover:hover)]:hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                 >
                   {status === 'loading' ? (
                     <>

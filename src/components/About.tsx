@@ -78,7 +78,7 @@ export default function About() {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="about" className="relative section-block">
+    <section id="about" className="relative overflow-hidden section-block">
       <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-40 pointer-events-none" />
 
       <div className="relative z-10 site-container">
@@ -90,29 +90,29 @@ export default function About() {
           <h2 className="section-title">
             {t('about.title')}
           </h2>
-          <p className="mt-5 text-[20px] md:text-[22px] leading-[1.55] font-medium text-[#F8FAFC] max-w-[720px] mx-auto [text-wrap:pretty]">
+          <p className="mt-5 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.55] font-medium text-[#F8FAFC] max-w-[720px] mx-auto [text-wrap:pretty]">
             {t('about.intro1')}
           </p>
-          <p className="mt-4 text-[17px] md:text-[18px] leading-[1.7] text-[#CBD5E1] max-w-[720px] mx-auto [text-wrap:pretty]">
+          <p className="mt-4 text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-[#CBD5E1] max-w-[720px] mx-auto [text-wrap:pretty]">
             {t('about.intro2')}
           </p>
         </div>
 
         {/* Stats (2x2 on mobile, 4 cols on desktop) */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16 reveal">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16 reveal">
           {stats.map((s) => (
             <div
               key={s.labelKey}
-              className="glass-card p-8 text-center hover:glow-border hover:-translate-y-0.5 transition-all duration-200 group"
+              className="min-w-0 glass-card p-5 sm:p-8 text-center hover:glow-border hover:-translate-y-0.5 transition-all duration-200 group"
             >
               <s.icon
                 aria-hidden="true"
                 className="h-7 w-7 mx-auto mb-3 text-[#38BDF8] group-hover:scale-110 transition-transform duration-200"
               />
-              <div className="text-[36px] md:text-[44px] leading-none font-bold text-[#F8FAFC]">
+              <div className="text-[30px] sm:text-[36px] md:text-[44px] leading-none font-bold text-[#F8FAFC]">
                 {t(s.valueKey)}
               </div>
-              <div className="text-[14px] md:text-[15px] text-slate-300 mt-2 font-medium">
+              <div className="text-[13px] sm:text-[14px] md:text-[15px] text-slate-300 mt-2 font-medium break-words">
                 {t(s.labelKey)}
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function About() {
           {pillars.map((p, i) => (
             <div
               key={p.titleKey}
-              className="pillar-card-subgrid glass-card p-8 md:p-9 flex flex-col hover:glow-border hover:-translate-y-0.5 transition-all duration-200"
+              className="pillar-card-subgrid min-w-0 glass-card p-6 sm:p-8 md:p-9 flex flex-col hover:glow-border hover:-translate-y-0.5 transition-all duration-200"
               style={{ transitionDelay: `${i * 70}ms` }}
             >
               <div
@@ -163,7 +163,7 @@ export default function About() {
             {t('about.highlights.heading')}
           </h3>
 
-          <div className="w-full rounded-[20px] surface-card p-8">
+          <div className="w-full rounded-[20px] surface-card p-6 sm:p-8">
             <ul className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-5 sm:gap-6 lg:gap-0">
               {highlights.map((item, idx) => {
                 const tabletSpan =
@@ -183,7 +183,7 @@ export default function About() {
                   <li
                     key={item.labelKey}
                     style={{ transitionDelay: `${idx * 60}ms` }}
-                    className={`reveal-strip text-center lg:text-left transition-transform duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 group ${tabletSpan} ${dividers} ${mobilePadding} ${desktopRightPad}`}
+                    className={`min-w-0 reveal-strip text-center lg:text-left transition-transform duration-200 ease-out [@media(hover:hover)]:hover:-translate-y-0.5 group ${tabletSpan} ${dividers} ${mobilePadding} ${desktopRightPad}`}
                   >
                     <div className="text-[36px] md:text-[40px] leading-tight font-bold tracking-[-0.02em] metric-gradient [@media(hover:hover)]:group-hover:brightness-110 transition-all duration-200">
                       {t(item.metricKey)}
@@ -206,17 +206,17 @@ export default function About() {
           <button
             type="button"
             onClick={() => scrollTo('#projects')}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#6366F1] text-ink-950 font-semibold hover:shadow-xl hover:shadow-cyan/30 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
-            <FolderGit2 className="h-5 w-5" aria-hidden="true" />
+            <FolderGit2 className="h-5 w-5 shrink-0" aria-hidden="true" />
             {t('about.ctaProjects')}
           </button>
           <button
             type="button"
             onClick={() => scrollTo('#contact')}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 bg-white/5 text-[#F8FAFC] font-semibold hover:border-cyan/40 hover:bg-cyan/5 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 min-h-[44px] px-7 py-3.5 rounded-xl border border-white/15 bg-white/5 text-[#F8FAFC] font-semibold hover:border-cyan/40 hover:bg-cyan/5 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
-            <Mail className="h-5 w-5" aria-hidden="true" />
+            <Mail className="h-5 w-5 shrink-0" aria-hidden="true" />
             {t('about.ctaContact')}
           </button>
         </div>

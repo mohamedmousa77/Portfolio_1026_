@@ -49,22 +49,25 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-[rgba(255,255,255,0.08)] bg-ink-950">
+    <footer
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      className="relative overflow-hidden border-t border-[rgba(255,255,255,0.08)] bg-ink-950"
+    >
       <div aria-hidden="true" className="absolute inset-0 bg-radial-glow opacity-30 pointer-events-none" />
 
       <div className="relative z-10 site-container pt-16 pb-6">
         {/* 12-column grid on desktop: Brand (5), Navigate (3), Connect (4) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[rgba(255,255,255,0.08)]">
           {/* Brand — spans 5 */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-5 min-w-0">
             <a
               href="#home"
               onClick={(e) => handleSmoothNav(e, '#home')}
-              className="inline-flex items-center gap-2 mb-4 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              className="inline-flex items-center gap-2 mb-4 rounded-lg min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
             >
               <span
                 aria-hidden="true"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-cyan to-electric text-ink-950"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan to-electric text-ink-950"
               >
                 <Code2 className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
               </span>
@@ -78,22 +81,22 @@ export default function Footer() {
           </div>
 
           {/* Navigate — spans 3 */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 min-w-0">
             <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8] mb-4">
               {t('footer.navigate')}
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5 sm:space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={(e) => handleSmoothNav(e, link.href)}
-                    className="group relative inline-flex items-center text-[16px] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors duration-200 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                    className="group relative inline-flex items-center min-h-[40px] sm:min-h-0 py-1 text-[16px] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors duration-200 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                   >
                     <span>{t(link.labelKey)}</span>
                     <span
                       aria-hidden="true"
-                      className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#38BDF8] transition-all duration-200 group-hover:w-full"
+                      className="absolute bottom-0.5 left-0 h-px w-0 bg-[#38BDF8] transition-all duration-200 group-hover:w-full"
                     />
                   </a>
                 </li>
@@ -102,11 +105,11 @@ export default function Footer() {
           </div>
 
           {/* Connect — spans 4 */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-4 min-w-0">
             <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8] mb-4">
               {t('footer.connect')}
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5 sm:space-y-2.5">
               {connectLinks.map((item) => (
                 <li key={item.labelKey}>
                   <a
@@ -114,7 +117,7 @@ export default function Footer() {
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noopener noreferrer' : undefined}
                     download={item.download}
-                    className="group inline-flex items-center gap-2.5 text-[16px] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors duration-200 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+                    className="group inline-flex items-center gap-2.5 min-h-[40px] sm:min-h-0 py-1 text-[16px] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors duration-200 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                   >
                     <item.icon
                       className="h-4 w-4 text-[#38BDF8] shrink-0"
@@ -142,18 +145,18 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 pb-6">
-          <p className="text-[14px] text-[#94A3B8]">
+          <p className="text-[14px] text-[#94A3B8] text-center sm:text-left">
             {t('footer.copyright')}
           </p>
           <button
             type="button"
             onClick={scrollTop}
-            className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[#CBD5E1] hover:text-[#38BDF8] rounded-lg px-2 py-1 transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="inline-flex items-center gap-2.5 min-h-[44px] text-[14px] font-medium text-[#CBD5E1] hover:text-[#38BDF8] rounded-lg px-2 py-1 transition-colors duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             <span>{t('footer.backToTop')}</span>
             <span
               aria-hidden="true"
-              className="h-8 w-8 rounded-lg border border-[rgba(255,255,255,0.10)] bg-white/[0.04] flex items-center justify-center group-hover:border-[#38BDF8]/40 [@media(hover:hover)]:group-hover:-translate-y-0.5 transition-all duration-200"
+              className="h-9 w-9 rounded-lg border border-[rgba(255,255,255,0.10)] bg-white/[0.04] flex items-center justify-center group-hover:border-[#38BDF8]/40 [@media(hover:hover)]:group-hover:-translate-y-0.5 transition-all duration-200"
             >
               <ArrowUp className="h-4 w-4" aria-hidden="true" />
             </span>

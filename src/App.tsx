@@ -15,9 +15,9 @@ function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="relative min-h-screen bg-ink-950 transition-colors duration-300">
+        <div className="relative min-h-app w-full max-w-full overflow-x-clip bg-ink-950 transition-colors duration-300">
           <Navbar />
-          <main>
+          <main className="w-full max-w-full">
             <Hero />
             <About />
             <Projects />

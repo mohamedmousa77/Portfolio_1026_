@@ -48,17 +48,24 @@
     );
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     scroll-behavior: smooth;
   }
 
   html {
     scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-ink-950 text-slate-300 font-sans antialiased text-base transition-colors duration-300;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   html.light body {
@@ -108,12 +115,13 @@
 }
 
 @layer components {
-  /* 1.1 Shared container: max-width 1200px, margin-inline auto, padding-inline clamp(20px, 4vw, 40px) */
+  /* 1.1 Shared container: max-width 1200px, margin-inline auto, padding-inline clamp(20px, 4vw, 40px) + safe-area insets */
   .site-container {
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
-    padding-inline: clamp(20px, 4vw, 40px);
+    padding-left: max(clamp(20px, 4vw, 40px), env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(20px, 4vw, 40px), env(safe-area-inset-right, 0px));
   }
 
   /* 1.2 Unified section spacing & scroll-margin-top (header height ~72px + 16px = 88px) */
@@ -127,9 +135,21 @@
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
-    padding-inline: clamp(20px, 4vw, 40px);
+    padding-left: max(clamp(20px, 4vw, 40px), env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(20px, 4vw, 40px), env(safe-area-inset-right, 0px));
     padding-block: clamp(72px, 10vw, 112px);
     scroll-margin-top: 88px;
+  }
+
+  /* Full-height hero section using 100svh / 100dvh to avoid iOS Safari address bar jump */
+  .min-h-hero {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .min-h-app {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .gradient-text {
@@ -188,7 +208,7 @@
   }
 
   .section-title {
-    @apply mt-3 text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC];
+    @apply mt-3 text-[32px] sm:text-[40px] md:text-[48px] leading-tight font-bold tracking-[-0.02em] text-[#F8FAFC];
     text-wrap: balance;
   }
 
@@ -197,7 +217,7 @@
   }
 
   .section-subtitle {
-    @apply mt-4 text-[18px] md:text-[20px] leading-[1.6] text-[#CBD5E1] max-w-[680px] mx-auto [text-wrap:balance];
+    @apply mt-4 text-[17px] sm:text-[18px] md:text-[20px] leading-[1.6] text-[#CBD5E1] max-w-[680px] mx-auto [text-wrap:balance];
   }
 
   html.light .section-subtitle {
