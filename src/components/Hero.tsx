@@ -1,11 +1,15 @@
 import { ArrowDown, Download, FolderGit2, Mail } from 'lucide-react';
-import personalImg from '../../assets/personal.png';
+import personalDarkImg from '../../assets/personal-dark.png';
+import personalLightImg from '../../assets/personal-light.png';
 import { getCvForLang } from '@/config/cv';
 import { useTranslation } from '@/i18n';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function Hero() {
   const { lang, t } = useTranslation();
+  const { theme } = useTheme();
   const cv = getCvForLang(lang);
+  const personalImg = theme === 'light' ? personalLightImg : personalDarkImg;
   const scrollTo = (href: string) =>
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
 
