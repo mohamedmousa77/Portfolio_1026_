@@ -1,4 +1,4 @@
-import { ArrowDown, Download, FolderGit2, Mail, Sparkles } from 'lucide-react';
+import { ArrowDown, Download, FolderGit2, Mail } from 'lucide-react';
 import personalImg from '../../assets/personal.png';
 import { getCvForLang } from '@/config/cv';
 import { useTranslation } from '@/i18n';
@@ -31,7 +31,10 @@ export default function Hero() {
           {/* Left column — Name, Title & CTAs */}
           <div className="lg:col-span-7 min-w-0 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 max-w-full px-4 py-2 rounded-full border border-cyan/25 bg-cyan/5 text-cyan-glow text-xs sm:text-sm font-medium mb-8 animate-fade-in">
-              <Sparkles className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping motion-reduce:animate-none rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
               <span className="break-words">{t('hero.badge')}</span>
             </div>
 

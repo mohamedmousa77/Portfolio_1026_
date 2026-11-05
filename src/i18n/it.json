@@ -30,9 +30,9 @@
   },
   "about": {
     "eyebrow": "01 — Chi sono",
-    "title": "Software progettato per durare",
-    "intro1": "Sono uno sviluppatore Senior Full-\u2060Stack .NET che realizza applicazioni enterprise progettate per sostenere la crescita, non solo il lancio.",
-    "intro2": "Seguo l'intero ciclo di sviluppo, dallo schema SQL Server alla UI in Angular fino al deployment su Azure, adottando Clean Architecture, DDD e CQRS affinché il codice resti leggibile e testabile al crescere del team e dei requisiti. Lavoro in italiano, inglese e arabo e ho consegnato progetti per clienti in Italia, Emirati Arabi Uniti e Stati Uniti.",
+    "title": "Software costruito per durare",
+    "intro1": "Sono uno sviluppatore Senior Full-Stack .NET. Realizzo applicazioni enterprise pensate per crescere, non solo per il lancio.",
+    "intro2": "Seguo l'intero ciclo di sviluppo, dallo schema SQL Server alla UI in Angular fino al deployment su Azure. Con Clean Architecture, DDD e CQRS mantengo il codice leggibile e testabile, anche quando team e requisiti crescono. Lavoro in italiano, inglese e arabo, con clienti in Italia, Emirati Arabi Uniti e Stati Uniti.",
     "stats": {
       "yearsValue": "5+",
       "yearsLabel": "Anni di esperienza",
@@ -117,12 +117,12 @@
     "showLess": "Mostra meno",
     "items": {
       "1": {
-        "title": "App di finanza personale",
+        "title": "App di Finanza Personale",
         "description": "Gestionale di finanza personale full-\u2060stack con dashboard interattive, budget e transazioni ricorrenti.",
         "result": "200+ utenti attivi al picco"
       },
       "2": {
-        "title": "Morra cinese",
+        "title": "Sasso, carta, forbice",
         "description": "Il classico gioco con tracciamento del punteggio, animazioni fluide e un layout responsive pulito giocabile su qualsiasi dispositivo."
       },
       "3": {

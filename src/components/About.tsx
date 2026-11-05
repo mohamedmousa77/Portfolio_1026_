@@ -90,10 +90,10 @@ export default function About() {
           <h2 className="section-title">
             {t('about.title')}
           </h2>
-          <p className="mt-5 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.55] font-medium text-[#F8FAFC] max-w-[720px] mx-auto [text-wrap:pretty]">
+          <p className="mt-5 mx-auto max-w-2xl text-xl md:text-2xl font-medium text-[#F8FAFC] [text-wrap:pretty]">
             {t('about.intro1')}
           </p>
-          <p className="mt-4 text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-[#CBD5E1] max-w-[720px] mx-auto [text-wrap:pretty]">
+          <p className="mt-4 mx-auto max-w-xl text-base md:text-lg leading-relaxed text-[#94A3B8] [text-wrap:pretty]">
             {t('about.intro2')}
           </p>
         </div>
